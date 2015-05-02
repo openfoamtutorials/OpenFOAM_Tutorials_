@@ -1,4 +1,4 @@
-Making Meshes for OpenFOAM with Gmsh, Part 0
+Making Meshes for OpenFOAM with Gmsh, Part 0: Basic Scripting and Structured Mesh
 
 DESCRIPTION:
 Here we will make a 2D square mesh and learn the basics of Gmsh scripting.
@@ -7,4 +7,4 @@ There are many meshing utilities out there, but Gmsh is my favorite because you 
 
 OUTLINE:
 Make Points and Lines to construct a Surface.
-Show how to make unstructured, structured, and recombined cells.
+Show how to make structured and recombined cells.

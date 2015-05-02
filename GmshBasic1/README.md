@@ -1,9 +1,9 @@
-Making Meshes for OpenFOAM with Gmsh, Part 1
+Making Meshes for OpenFOAM with Gmsh, Part 1: Unstructured and Structured Hybrid Meshes
 
 DESCRIPTION:
-Here we will make a simple cube unstructured mesh and use the OpenFOAM mesh conversion utility for Gmsh.
+Here we will make different types of unstructured meshes and make a mesh that contains both unstructured and structured cells.
 
 OUTLINE:
-Make a cube mesh in Gmsh with a simple script.
-Create the mesh using the command line.
-Convert the mesh with the command-line OpenFOAM mesh conversion utility.
+Make a 2D square mesh with 2 unstructured partitions.
+Make one partition structured.
+Show recombined unstructured cells.
