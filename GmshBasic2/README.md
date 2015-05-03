@@ -9,3 +9,8 @@ Extrude the 2D mesh to create a 3D mesh.
 Define the volume and surfaces so that OpenFOAM can recognize them. 
 Create the mesh by exporting it to a file with the command line.
 Convert the mesh with the command-line OpenFOAM mesh conversion utility.
+
+This tutorial was run successfully on:
+-Ubuntu 14.04 64-bit
+-OpenFOAM 2.3.1
+-Gmsh 2.9.3

@@ -8,3 +8,8 @@ There are many meshing utilities out there, but Gmsh is my favorite because you 
 OUTLINE:
 Make Points and Lines to construct a Surface.
 Show how to make structured and recombined cells.
+
+This tutorial was run successfully on:
+-Ubuntu 14.04 64-bit
+-OpenFOAM 2.3.1
+-Gmsh 2.9.3

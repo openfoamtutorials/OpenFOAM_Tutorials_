@@ -22,13 +22,10 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    pimpleDyMFoam.C
+    mySolver.C
 
 Description
-    Transient solver for incompressible, flow of Newtonian fluids
-    on a moving mesh using the PIMPLE (merged PISO-SIMPLE) algorithm.
-
-    Turbulence modelling is generic, i.e. laminar, RAS or LES may be selected.
+    A copy of pimpleDyMFoam.
 
 \*---------------------------------------------------------------------------*/
 

@@ -7,3 +7,8 @@ OUTLINE:
 Make a 2D square mesh with 2 unstructured partitions.
 Make one partition structured.
 Show recombined unstructured cells.
+
+This tutorial was run successfully on:
+-Ubuntu 14.04 64-bit
+-OpenFOAM 2.3.1
+-Gmsh 2.9.3
