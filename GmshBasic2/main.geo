@@ -20,6 +20,7 @@ Transfinite Line{5,6,7,8} = boxdim/gridsize+1;
 Transfinite Surface{10};
 Recombine Surface{10};
 
+//Now make 3D by extrusion.
 newEntities[] = 
 Extrude { 0,0,1 }
 {

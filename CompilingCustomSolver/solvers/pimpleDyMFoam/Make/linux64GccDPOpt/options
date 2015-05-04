@@ -1,0 +1,56 @@
+# 1 "options"
+# 1 "<command-line>"
+
+
+
+
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+
+# 17 "/usr/include/stdc-predef.h" 3 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 4 "<command-line>" 2
+# 1 "options"
+EXE_INC = -I.. -I$(LIB_SRC)/turbulenceModels/incompressible/turbulenceModel -I$(LIB_SRC)/transportModels -I$(LIB_SRC)/transportModels/incompressible/singlePhaseTransportModel -I$(LIB_SRC)/finiteVolume/lnInclude -I$(LIB_SRC)/fvOptions/lnInclude -I$(LIB_SRC)/sampling/lnInclude -I$(LIB_SRC)/dynamicFvMesh/lnInclude -I$(LIB_SRC)/dynamicMesh/lnInclude -I$(LIB_SRC)/meshTools/lnInclude 
+# 13 "options"
+EXE_LIBS = -lincompressibleTransportModels -lincompressibleTurbulenceModel -lincompressibleRASModels -lincompressibleLESModels -lfiniteVolume -lfvOptions -lsampling -ldynamicFvMesh -ltopoChangerFvMesh -ldynamicMesh -lmeshTools

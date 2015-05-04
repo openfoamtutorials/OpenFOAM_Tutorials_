@@ -1,5 +1,7 @@
 Making Meshes for OpenFOAM with Gmsh, Part 2: Extrusions and Conversion to OpenFOAM Format
 
+All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/GmshBasic2
+
 DESCRIPTION:
 Here we will make a simple cube mesh  by extrusion from a 2D sqaure mesh. Then we will export the mesh to a file and use the OpenFOAM mesh conversion utility to import it into a dummy case.
 
