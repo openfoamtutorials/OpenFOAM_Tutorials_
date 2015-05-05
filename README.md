@@ -14,5 +14,6 @@ Upcoming tutorials:
 	-point in surface for unstructured mesh size control.
 	-ce++ instead of manual identifiers.
 	-Include "";
+-Two dimensional wind tunnel
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!
