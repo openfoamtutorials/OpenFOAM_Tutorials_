@@ -1,0 +1,1326 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 2.3.1-bcfaaa7b8660
+Exec   : pimpleDyMFoamTimed -parallel
+Date   : May 05 2015
+Time   : 13:59:47
+Host   : "lordvon-XPS-8300"
+PID    : 9879
+Case   : /home/lordvon/Desktop/OpenFOAM_Tutorials/IncompleteTutorials/TimeProfiling/propeller
+nProcs : 4
+Slaves : 
+3
+(
+"lordvon-XPS-8300.9880"
+"lordvon-XPS-8300.9881"
+"lordvon-XPS-8300.9882"
+)
+
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Selecting dynamicFvMesh solidBodyMotionFvMesh
+Selecting solid-body motion function rotatingMotion
+Applying solid body motion to cellZone innerCylinderSmall
+
+PIMPLE: no residual control data found. Calculations will employ 2 corrector loops
+
+Reading field p
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.984261, 1.01509, 1.00007
+AMI: Patch target sum(weights) min/max/average = 0.969379, 1.00121, 0.999945
+Selecting incompressible transport model Newtonian
+Selecting turbulence model type RASModel
+Selecting RAS turbulence model kEpsilon
+kEpsilonCoeffs
+{
+    Cmu             0.09;
+    C1              1.44;
+    C2              1.92;
+    sigmaEps        1.3;
+}
+
+Reading/calculating face velocity Uf
+
+No finite volume options present
+
+Courant Number mean: 2.49591e-05 max: 0.0531646
+Reading surface description:
+    zNormal
+    isoQ
+    propeller
+
+forces forces:
+    Not including porosity effects
+
+
+Starting time loop
+
+Courant Number mean: 2.4712e-05 max: 0.0526382
+deltaT = 1.17647e-05
+Time = 1.17647e-05
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 1.17647e-05 transformation: ((0 0 0) (1 (0 0.000929412 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.98423, 1.01595, 1.00007
+AMI: Patch target sum(weights) min/max/average = 0.962631, 1.00123, 0.999931
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 1, Final residual = 0.0287309, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1, Final residual = 2.65255e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 1, Final residual = 0.0287379, No Iterations 1
+GAMG:  Solving for p, Initial residual = 1, Final residual = 0.009121, No Iterations 7
+time step continuity errors : sum local = 6.56856e-07, global = -1.21639e-07, cumulative = -1.21639e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.00534839, Final residual = 8.91027e-07, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 0.0696041, Final residual = 4.7702e-07, No Iterations 3
+smoothSolver:  Solving for Uz, Initial residual = 0.00541339, Final residual = 8.91171e-07, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0385585, Final residual = 9.14913e-07, No Iterations 10
+time step continuity errors : sum local = 3.62111e-09, global = -4.92591e-10, cumulative = -1.22132e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000513239, Final residual = 8.99453e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 1, Final residual = 6.754e-08, No Iterations 5
+ExecutionTime = 5.59 s  ClockTime = 7 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.0383158 714.828 -0.0288612)
+        viscous  : (-4.35098e-07 -0.00364887 1.2413e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-0.000311621 -3.826 -0.00177938)
+        viscous  : (3.94648e-08 -0.000472791 -1.79704e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.00545591 max: 0.666036
+deltaT = 1.41176e-05
+Time = 2.58824e-05
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 2.58824e-05 transformation: ((0 0 0) (0.999998 (0 0.0020447 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.983648, 1.01676, 1.00007
+AMI: Patch target sum(weights) min/max/average = 0.954571, 1.00125, 0.999912
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.372693, Final residual = 0.000222573, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.996826, Final residual = 0.000513874, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.372649, Final residual = 0.000225437, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0395563, Final residual = 0.000319785, No Iterations 6
+time step continuity errors : sum local = 1.91941e-06, global = 4.04372e-07, cumulative = 2.8224e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.00784933, Final residual = 6.64872e-07, No Iterations 3
+smoothSolver:  Solving for Uy, Initial residual = 0.0641172, Final residual = 6.55177e-07, No Iterations 3
+smoothSolver:  Solving for Uz, Initial residual = 0.00783293, Final residual = 6.71633e-07, No Iterations 3
+GAMG:  Solving for p, Initial residual = 0.408146, Final residual = 5.87464e-07, No Iterations 14
+time step continuity errors : sum local = 3.26574e-10, global = 3.6382e-11, cumulative = 2.82276e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000629141, Final residual = 5.9823e-07, No Iterations 3
+smoothSolver:  Solving for k, Initial residual = 0.0182027, Final residual = 5.30999e-07, No Iterations 6
+ExecutionTime = 10.66 s  ClockTime = 14 s
+
+forces forces output:
+    sum of forces:
+        pressure : (0.016429 14.3906 0.081449)
+        viscous  : (-6.45234e-07 -0.0039013 1.3423e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (0.00472888 -0.559823 0.00190837)
+        viscous  : (5.28982e-08 -0.000511619 -2.51077e-10)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.00658401 max: 0.841285
+deltaT = 1.67951e-05
+Time = 4.26775e-05
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 4.26775e-05 transformation: ((0 0 0) (0.999994 (0 0.00337151 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.975101, 1.01738, 1.00007
+AMI: Patch target sum(weights) min/max/average = 0.945073, 1.00127, 0.999885
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.119266, Final residual = 0.000121848, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.14219, Final residual = 0.000147967, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.113423, Final residual = 0.000122676, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.624491, Final residual = 0.00338389, No Iterations 2
+time step continuity errors : sum local = 8.75952e-07, global = 1.56192e-07, cumulative = 4.38469e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.00139917, Final residual = 9.76878e-07, No Iterations 6
+smoothSolver:  Solving for Uy, Initial residual = 0.00121056, Final residual = 5.01041e-07, No Iterations 6
+smoothSolver:  Solving for Uz, Initial residual = 0.00130133, Final residual = 9.98935e-07, No Iterations 6
+GAMG:  Solving for p, Initial residual = 0.0792442, Final residual = 8.49788e-07, No Iterations 12
+time step continuity errors : sum local = 8.58232e-11, global = 1.04848e-11, cumulative = 4.38479e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.00380454, Final residual = 9.70356e-07, No Iterations 8
+smoothSolver:  Solving for k, Initial residual = 0.00959323, Final residual = 7.16929e-07, No Iterations 12
+ExecutionTime = 15.34 s  ClockTime = 20 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.00629379 3.41753 0.00772354)
+        viscous  : (-7.33028e-07 -0.00429344 2.34406e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-0.000703788 -0.171735 0.000617176)
+        viscous  : (8.34627e-08 -0.000575335 -5.77286e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0078222 max: 1.01475
+deltaT = 1.99442e-05
+Time = 6.26217e-05
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 6.26217e-05 transformation: ((0 0 0) (0.999988 (0 0.00494709 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.965471, 1.01762, 1.00006
+AMI: Patch target sum(weights) min/max/average = 0.933983, 1.00127, 0.99985
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0269396, Final residual = 3.74269e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0636884, Final residual = 5.02842e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0271587, Final residual = 3.72893e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.272569, Final residual = 0.00216863, No Iterations 2
+time step continuity errors : sum local = 2.20496e-07, global = 6.21512e-08, cumulative = 5.0063e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.000337985, Final residual = 8.53629e-07, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 0.000371228, Final residual = 6.42451e-07, No Iterations 2
+smoothSolver:  Solving for Uz, Initial residual = 0.000323755, Final residual = 8.44044e-07, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0318006, Final residual = 9.1952e-07, No Iterations 11
+time step continuity errors : sum local = 6.6481e-11, global = 8.42853e-12, cumulative = 5.00639e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000984558, Final residual = 7.47242e-07, No Iterations 3
+smoothSolver:  Solving for k, Initial residual = 0.00162916, Final residual = 4.11793e-07, No Iterations 4
+ExecutionTime = 20.12 s  ClockTime = 26 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.0031841 1.51273 0.00151806)
+        viscous  : (-6.26497e-07 -0.00455078 2.46524e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-0.000518007 -0.0754833 0.00033054)
+        viscous  : (1.00857e-07 -0.000599613 -7.41835e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.00928124 max: 1.22038
+deltaT = 2.28629e-05
+Time = 8.54846e-05
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 8.54846e-05 transformation: ((0 0 0) (0.999977 (0 0.00675323 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.955963, 1.01797, 1.00006
+AMI: Patch target sum(weights) min/max/average = 0.922086, 1.00133, 0.999809
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0175861, Final residual = 2.08157e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0375163, Final residual = 3.03897e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0175443, Final residual = 2.06395e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.193189, Final residual = 0.00126853, No Iterations 2
+time step continuity errors : sum local = 9.52957e-08, global = 2.73658e-08, cumulative = 5.28004e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 0.000137529, Final residual = 1.19662e-07, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 0.000183415, Final residual = 1.0743e-07, No Iterations 2
+smoothSolver:  Solving for Uz, Initial residual = 0.000133559, Final residual = 1.18654e-07, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0185392, Final residual = 5.7829e-07, No Iterations 11
+time step continuity errors : sum local = 3.46564e-11, global = 4.666e-12, cumulative = 5.28009e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000491319, Final residual = 5.43423e-07, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.00105461, Final residual = 7.50071e-08, No Iterations 3
+ExecutionTime = 25.01 s  ClockTime = 32 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.00148421 0.97218 -0.00210068)
+        viscous  : (-5.45945e-07 -0.00473024 2.43131e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-0.000274359 -0.0439224 7.60285e-06)
+        viscous  : (1.00817e-07 -0.000610984 -7.49429e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0106322 max: 1.41543
+deltaT = 2.54032e-05
+Time = 0.000110888
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000110888 transformation: ((0 0 0) (0.999962 (0 0.00876002 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.946085, 1.02163, 1.00007
+AMI: Patch target sum(weights) min/max/average = 0.910711, 1.00185, 0.999787
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0149502, Final residual = 1.76692e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0262991, Final residual = 2.2738e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0149175, Final residual = 1.75757e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.142529, Final residual = 0.000813129, No Iterations 2
+time step continuity errors : sum local = 5.0915e-08, global = 1.55607e-08, cumulative = 5.4357e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 8.36409e-05, Final residual = 6.81514e-08, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 0.000107131, Final residual = 4.90113e-08, No Iterations 2
+smoothSolver:  Solving for Uz, Initial residual = 8.25662e-05, Final residual = 6.7713e-08, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0128973, Final residual = 7.52696e-07, No Iterations 10
+time step continuity errors : sum local = 4.0143e-11, global = 5.85693e-12, cumulative = 5.43576e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000414714, Final residual = 2.74751e-07, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000977663, Final residual = 6.4453e-07, No Iterations 2
+ExecutionTime = 29.94 s  ClockTime = 37 s
+
+forces forces output:
+    sum of forces:
+        pressure : (5.97863e-05 0.759688 -0.00181653)
+        viscous  : (-2.90403e-07 -0.00489426 2.44281e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-0.000126785 -0.0345843 -7.02337e-05)
+        viscous  : (9.60343e-08 -0.000620152 -7.20285e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0118059 max: 1.5927
+deltaT = 2.77848e-05
+Time = 0.000138673
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000138673 transformation: ((0 0 0) (0.99994 (0 0.0109549 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.935255, 1.02791, 1.00009
+AMI: Patch target sum(weights) min/max/average = 0.900445, 1.00219, 0.999759
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0138944, Final residual = 1.78515e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0203374, Final residual = 1.98914e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0138987, Final residual = 1.78015e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.114977, Final residual = 0.000613749, No Iterations 2
+time step continuity errors : sum local = 3.43499e-08, global = 1.06231e-08, cumulative = 5.54199e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 7.20685e-05, Final residual = 6.22918e-08, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 8.14093e-05, Final residual = 9.48991e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 7.14825e-05, Final residual = 6.21625e-08, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0114364, Final residual = 6.02974e-07, No Iterations 10
+time step continuity errors : sum local = 2.96722e-11, global = 4.35565e-12, cumulative = 5.54203e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000379361, Final residual = 1.74279e-07, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000947926, Final residual = 5.75304e-07, No Iterations 2
+ExecutionTime = 34.88 s  ClockTime = 43 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000258543 0.648202 -0.00127639)
+        viscous  : (-6.24606e-08 -0.00504574 2.49646e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-7.52109e-05 -0.0299791 -4.21728e-05)
+        viscous  : (9.27793e-08 -0.000627943 -6.92429e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0129046 max: 1.7607
+deltaT = 3.07617e-05
+Time = 0.000169434
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000169434 transformation: ((0 0 0) (0.99991 (0 0.0133849 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.926258, 1.03371, 1.00013
+AMI: Patch target sum(weights) min/max/average = 0.891663, 1.00251, 0.999755
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0136765, Final residual = 1.95229e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0170002, Final residual = 1.94146e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0136707, Final residual = 1.94792e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.106107, Final residual = 0.000521392, No Iterations 2
+time step continuity errors : sum local = 2.79087e-08, global = 8.4075e-09, cumulative = 5.62611e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 7.03335e-05, Final residual = 6.31415e-08, No Iterations 2
+smoothSolver:  Solving for Uy, Initial residual = 7.22353e-05, Final residual = 9.22404e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 6.97257e-05, Final residual = 6.27432e-08, No Iterations 2
+GAMG:  Solving for p, Initial residual = 0.0114863, Final residual = 5.41366e-07, No Iterations 10
+time step continuity errors : sum local = 2.57305e-11, global = 3.78828e-12, cumulative = 5.62614e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000369758, Final residual = 1.42762e-07, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000962788, Final residual = 6.02245e-07, No Iterations 2
+ExecutionTime = 39.65 s  ClockTime = 48 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000189146 0.58308 -0.000844514)
+        viscous  : (1.63118e-07 -0.00518757 2.64649e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-4.58602e-05 -0.027326 -4.10892e-05)
+        viscous  : (9.15956e-08 -0.000634917 -6.68436e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0142782 max: 1.96642
+deltaT = 3.07617e-05
+Time = 0.000200196
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000200196 transformation: ((0 0 0) (0.999875 (0 0.0158148 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.920332, 1.03785, 1.00015
+AMI: Patch target sum(weights) min/max/average = 0.885531, 1.00278, 0.999741
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0124036, Final residual = 1.76059e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0132069, Final residual = 1.55346e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0123927, Final residual = 1.75643e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0603161, Final residual = 0.000339718, No Iterations 2
+time step continuity errors : sum local = 1.50902e-08, global = 4.46381e-09, cumulative = 5.67078e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 5.89941e-05, Final residual = 8.11528e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 4.98941e-05, Final residual = 6.45351e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 5.85886e-05, Final residual = 7.99847e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00936774, Final residual = 7.04167e-07, No Iterations 9
+time step continuity errors : sum local = 2.93795e-11, global = 4.46148e-12, cumulative = 5.67083e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000330227, Final residual = 9.4352e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000902721, Final residual = 4.72954e-07, No Iterations 2
+ExecutionTime = 43.97 s  ClockTime = 54 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.00011767 0.540133 -0.000648584)
+        viscous  : (3.69701e-07 -0.0053079 2.84187e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-4.21178e-05 -0.0255006 -3.65084e-05)
+        viscous  : (9.16676e-08 -0.000640672 -6.35844e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0142698 max: 1.98016
+deltaT = 3.07617e-05
+Time = 0.000230958
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000230958 transformation: ((0 0 0) (0.999834 (0 0.0182446 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.917419, 1.04238, 1.00016
+AMI: Patch target sum(weights) min/max/average = 0.881999, 1.00252, 0.999719
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0117922, Final residual = 1.63415e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0113426, Final residual = 1.33037e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0117815, Final residual = 1.6288e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0522359, Final residual = 0.000292857, No Iterations 2
+time step continuity errors : sum local = 1.15678e-08, global = 3.36802e-09, cumulative = 5.70451e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 5.09625e-05, Final residual = 6.35478e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 4.07705e-05, Final residual = 4.92346e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 5.07667e-05, Final residual = 6.28356e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0082735, Final residual = 5.83651e-07, No Iterations 9
+time step continuity errors : sum local = 2.18484e-11, global = 3.28072e-12, cumulative = 5.70454e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000304299, Final residual = 7.416e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000858705, Final residual = 3.95485e-07, No Iterations 2
+ExecutionTime = 48.58 s  ClockTime = 59 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000141215 0.513028 -0.000607027)
+        viscous  : (4.89557e-07 -0.00541033 3.05346e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-3.85165e-05 -0.024362 -3.37372e-05)
+        viscous  : (9.42211e-08 -0.000645758 -6.30187e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.014262 max: 1.99108
+deltaT = 3.07617e-05
+Time = 0.000261719
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000261719 transformation: ((0 0 0) (0.999786 (0 0.0206744 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.917477, 1.04634, 1.00018
+AMI: Patch target sum(weights) min/max/average = 0.881024, 1.00264, 0.999703
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0112997, Final residual = 1.53535e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00993724, Final residual = 1.16984e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.011295, Final residual = 1.53033e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0462401, Final residual = 0.000238341, No Iterations 2
+time step continuity errors : sum local = 8.50696e-09, global = 2.17298e-09, cumulative = 5.72627e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 4.52585e-05, Final residual = 5.20183e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 3.30192e-05, Final residual = 3.78685e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 4.50563e-05, Final residual = 5.15958e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00717983, Final residual = 9.29628e-07, No Iterations 8
+time step continuity errors : sum local = 3.1701e-11, global = 5.23493e-12, cumulative = 5.72632e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000283486, Final residual = 6.4143e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000823866, Final residual = 3.40767e-07, No Iterations 2
+ExecutionTime = 53.23 s  ClockTime = 65 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000123177 0.499278 -0.000522985)
+        viscous  : (5.88727e-07 -0.00549788 3.2393e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-3.20501e-05 -0.0237428 -3.33151e-05)
+        viscous  : (9.76249e-08 -0.000650372 -6.4749e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0142548 max: 1.99953
+deltaT = 3.07617e-05
+Time = 0.000292481
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000292481 transformation: ((0 0 0) (0.999733 (0 0.0231039 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.920477, 1.04757, 1.00018
+AMI: Patch target sum(weights) min/max/average = 0.882579, 1.00272, 0.999691
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0108919, Final residual = 1.46166e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00888577, Final residual = 1.05338e-05, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0108869, Final residual = 1.45661e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0411789, Final residual = 0.000197564, No Iterations 2
+time step continuity errors : sum local = 6.4659e-09, global = 1.2235e-09, cumulative = 5.73856e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 4.06892e-05, Final residual = 4.37824e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 2.78057e-05, Final residual = 3.02128e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 4.04771e-05, Final residual = 4.35032e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00633763, Final residual = 7.38524e-07, No Iterations 8
+time step continuity errors : sum local = 2.32437e-11, global = 3.83468e-12, cumulative = 5.7386e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000266125, Final residual = 5.79225e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000794531, Final residual = 3.0176e-07, No Iterations 2
+ExecutionTime = 57.85 s  ClockTime = 70 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-6.32603e-06 0.494853 -0.000540117)
+        viscous  : (6.62359e-07 -0.0055729 3.41524e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-3.19377e-05 -0.0234491 -4.01205e-05)
+        viscous  : (1.01394e-07 -0.000654645 -6.68394e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.014248 max: 2.00629
+deltaT = 2.948e-05
+Time = 0.000321961
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000321961 transformation: ((0 0 0) (0.999677 (0 0.0254322 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.926019, 1.04714, 1.00018
+AMI: Patch target sum(weights) min/max/average = 0.886446, 1.00275, 0.999687
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0101016, Final residual = 1.27752e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00775012, Final residual = 8.7295e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0100951, Final residual = 1.27284e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0238958, Final residual = 0.000162877, No Iterations 2
+time step continuity errors : sum local = 4.62547e-09, global = 1.17862e-09, cumulative = 5.75038e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 3.47812e-05, Final residual = 3.33838e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 2.28173e-05, Final residual = 2.11222e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 3.47369e-05, Final residual = 3.32101e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00511074, Final residual = 6.28161e-07, No Iterations 8
+time step continuity errors : sum local = 1.75027e-11, global = 2.84898e-12, cumulative = 5.75041e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000242706, Final residual = 4.5061e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000738354, Final residual = 2.33272e-07, No Iterations 2
+ExecutionTime = 62.45 s  ClockTime = 75 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-9.266e-05 0.492721 -0.000439269)
+        viscous  : (7.09462e-07 -0.0056347 3.5642e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-2.72043e-05 -0.0233653 -3.34077e-05)
+        viscous  : (1.05295e-07 -0.000658395 -6.93983e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136485 max: 1.92794
+deltaT = 2.948e-05
+Time = 0.000351441
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000351441 transformation: ((0 0 0) (0.999615 (0 0.0277603 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.923678, 1.04489, 1.00019
+AMI: Patch target sum(weights) min/max/average = 0.88485, 1.00277, 0.999693
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00991088, Final residual = 1.23975e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00726169, Final residual = 8.11684e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00990675, Final residual = 1.23504e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0334159, Final residual = 0.000177355, No Iterations 2
+time step continuity errors : sum local = 4.78519e-09, global = 1.40826e-09, cumulative = 5.76449e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 3.22642e-05, Final residual = 3.03934e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 2.15949e-05, Final residual = 1.83036e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 3.22747e-05, Final residual = 3.02098e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00500799, Final residual = 6.37023e-07, No Iterations 8
+time step continuity errors : sum local = 1.66251e-11, global = 2.75282e-12, cumulative = 5.76452e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000233598, Final residual = 4.22593e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000719744, Final residual = 2.14767e-07, No Iterations 2
+ExecutionTime = 67.03 s  ClockTime = 80 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000108062 0.492346 -0.000402099)
+        viscous  : (7.15952e-07 -0.00568819 3.70121e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-2.47747e-05 -0.0233882 -2.66133e-05)
+        viscous  : (1.09188e-07 -0.000661875 -7.1101e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136428 max: 1.93244
+deltaT = 2.948e-05
+Time = 0.000380921
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000380921 transformation: ((0 0 0) (0.999547 (0 0.0300882 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.919021, 1.04372, 1.00019
+AMI: Patch target sum(weights) min/max/average = 0.881682, 1.00307, 0.999711
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00964517, Final residual = 1.20444e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00665934, Final residual = 7.53439e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00964127, Final residual = 1.19969e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0307871, Final residual = 0.000159771, No Iterations 2
+time step continuity errors : sum local = 4.04534e-09, global = 1.17203e-09, cumulative = 5.77624e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 3.0616e-05, Final residual = 2.82736e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.97928e-05, Final residual = 1.58811e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 3.05466e-05, Final residual = 2.80793e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00466772, Final residual = 5.43793e-07, No Iterations 8
+time step continuity errors : sum local = 1.33603e-11, global = 2.24447e-12, cumulative = 5.77626e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000226652, Final residual = 4.00979e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000704791, Final residual = 1.99128e-07, No Iterations 2
+ExecutionTime = 71.48 s  ClockTime = 86 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000143285 0.492717 -0.000333314)
+        viscous  : (7.05053e-07 -0.00573499 3.83188e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.9405e-05 -0.0234361 -2.11859e-05)
+        viscous  : (1.13103e-07 -0.000665118 -7.2395e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136375 max: 1.93643
+deltaT = 2.948e-05
+Time = 0.000410401
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000410401 transformation: ((0 0 0) (0.999474 (0 0.032416 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.917059, 1.04582, 1.00017
+AMI: Patch target sum(weights) min/max/average = 0.880976, 1.00318, 0.999716
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00940481, Final residual = 1.17448e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00616035, Final residual = 7.05616e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00940054, Final residual = 1.16981e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0286618, Final residual = 0.000153449, No Iterations 2
+time step continuity errors : sum local = 3.66716e-09, global = 1.01232e-09, cumulative = 5.78639e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.92808e-05, Final residual = 2.68376e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.84045e-05, Final residual = 1.44262e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.91952e-05, Final residual = 2.65633e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.004388, Final residual = 5.12093e-07, No Iterations 8
+time step continuity errors : sum local = 1.19033e-11, global = 1.97004e-12, cumulative = 5.78641e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000221681, Final residual = 3.84496e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000690668, Final residual = 1.86022e-07, No Iterations 2
+ExecutionTime = 76.07 s  ClockTime = 91 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000150745 0.493972 -0.000291456)
+        viscous  : (6.91269e-07 -0.00577622 3.95489e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.76568e-05 -0.0235298 -1.84963e-05)
+        viscous  : (1.169e-07 -0.000668106 -7.36135e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136323 max: 1.94008
+deltaT = 2.948e-05
+Time = 0.000439881
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000439881 transformation: ((0 0 0) (0.999396 (0 0.0347436 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.917805, 1.04447, 1.00016
+AMI: Patch target sum(weights) min/max/average = 0.8826, 1.00301, 0.999721
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00918982, Final residual = 1.15125e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.005743, Final residual = 6.66127e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00918491, Final residual = 1.14654e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0267441, Final residual = 0.000138341, No Iterations 2
+time step continuity errors : sum local = 3.13528e-09, global = 8.80397e-10, cumulative = 5.79521e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.79404e-05, Final residual = 2.52257e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.70987e-05, Final residual = 1.31513e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.78646e-05, Final residual = 2.50587e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0041477, Final residual = 4.86519e-07, No Iterations 8
+time step continuity errors : sum local = 1.07482e-11, global = 1.75722e-12, cumulative = 5.79523e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.00021774, Final residual = 3.71213e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000676801, Final residual = 1.76488e-07, No Iterations 2
+ExecutionTime = 80.7 s  ClockTime = 96 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000124407 0.495483 -0.000273803)
+        viscous  : (6.83656e-07 -0.00581281 4.06787e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.54628e-05 -0.0236283 -1.78849e-05)
+        viscous  : (1.20249e-07 -0.000670829 -7.43056e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136274 max: 1.94346
+deltaT = 2.948e-05
+Time = 0.000469361
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000469361 transformation: ((0 0 0) (0.999313 (0 0.037071 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.921288, 1.03968, 1.00014
+AMI: Patch target sum(weights) min/max/average = 0.886581, 1.00279, 0.999744
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00899392, Final residual = 1.13244e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00539736, Final residual = 6.32493e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00898739, Final residual = 1.12785e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0252469, Final residual = 0.00013077, No Iterations 2
+time step continuity errors : sum local = 2.82173e-09, global = 8.27346e-10, cumulative = 5.8035e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.69647e-05, Final residual = 2.43206e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.60851e-05, Final residual = 1.23685e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.68897e-05, Final residual = 2.4138e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00401604, Final residual = 4.88966e-07, No Iterations 8
+time step continuity errors : sum local = 1.02997e-11, global = 1.66662e-12, cumulative = 5.80352e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000214712, Final residual = 3.60164e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.00066401, Final residual = 1.68989e-07, No Iterations 2
+ExecutionTime = 85.15 s  ClockTime = 102 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000130709 0.497987 -0.000252889)
+        viscous  : (6.83656e-07 -0.00584557 4.1693e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.61843e-05 -0.0237821 -1.43263e-05)
+        viscous  : (1.22681e-07 -0.000673281 -7.37601e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136227 max: 1.94654
+deltaT = 2.948e-05
+Time = 0.000498841
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000498841 transformation: ((0 0 0) (0.999224 (0 0.0393982 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.927548, 1.03224, 1.0001
+AMI: Patch target sum(weights) min/max/average = 0.892796, 1.00229, 0.999745
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00881413, Final residual = 1.11719e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00509261, Final residual = 6.02778e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00880926, Final residual = 1.11277e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0239679, Final residual = 0.00011412, No Iterations 2
+time step continuity errors : sum local = 2.35132e-09, global = 6.49093e-10, cumulative = 5.81001e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.61722e-05, Final residual = 2.37451e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.50001e-05, Final residual = 1.16195e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.6106e-05, Final residual = 2.35658e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00391418, Final residual = 9.08609e-07, No Iterations 7
+time step continuity errors : sum local = 1.83147e-11, global = 3.29955e-12, cumulative = 5.81004e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000212666, Final residual = 3.51034e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000652347, Final residual = 1.62752e-07, No Iterations 2
+ExecutionTime = 89.15 s  ClockTime = 107 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000109356 0.50068 -0.000265806)
+        viscous  : (6.82424e-07 -0.00587501 4.2596e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.51035e-05 -0.0239143 -1.64156e-05)
+        viscous  : (1.24658e-07 -0.000675453 -7.28296e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136182 max: 1.94939
+deltaT = 2.948e-05
+Time = 0.000528321
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000528321 transformation: ((0 0 0) (0.999129 (0 0.0417252 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.93664, 1.02638, 1.00008
+AMI: Patch target sum(weights) min/max/average = 0.899853, 1.00194, 0.999768
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00864774, Final residual = 1.1033e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00484398, Final residual = 5.7773e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00864513, Final residual = 1.09916e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0228837, Final residual = 0.000108275, No Iterations 2
+time step continuity errors : sum local = 2.13841e-09, global = -2.09575e-10, cumulative = 5.80795e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.56202e-05, Final residual = 2.35494e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.38801e-05, Final residual = 1.15752e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.55001e-05, Final residual = 2.33074e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00380091, Final residual = 4.50502e-07, No Iterations 7
+time step continuity errors : sum local = 8.73741e-12, global = 1.78401e-12, cumulative = 5.80796e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000211244, Final residual = 3.4299e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000641909, Final residual = 1.56328e-07, No Iterations 2
+ExecutionTime = 93.45 s  ClockTime = 112 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000121503 0.505479 -0.000233977)
+        viscous  : (6.67521e-07 -0.0059017 4.34335e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.54831e-05 -0.0240155 -1.48152e-05)
+        viscous  : (1.26521e-07 -0.000677357 -7.08547e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136139 max: 1.9519
+deltaT = 2.948e-05
+Time = 0.000557801
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000557801 transformation: ((0 0 0) (0.999029 (0 0.044052 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.948634, 1.0209, 1.00006
+AMI: Patch target sum(weights) min/max/average = 0.907435, 1.00154, 0.99979
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00849112, Final residual = 1.09238e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00469898, Final residual = 5.62636e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00848691, Final residual = 1.08861e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0217704, Final residual = 8.40861e-05, No Iterations 2
+time step continuity errors : sum local = 1.60333e-09, global = 2.43212e-10, cumulative = 5.8104e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.47853e-05, Final residual = 2.27715e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.33086e-05, Final residual = 1.04001e-07, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.47197e-05, Final residual = 2.26376e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00369122, Final residual = 6.46345e-07, No Iterations 7
+time step continuity errors : sum local = 1.21055e-11, global = 2.27999e-12, cumulative = 5.81042e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000210283, Final residual = 3.36098e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000632487, Final residual = 1.50937e-07, No Iterations 2
+ExecutionTime = 98.01 s  ClockTime = 117 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000109001 0.508452 -0.000213483)
+        viscous  : (6.44775e-07 -0.00592608 4.43121e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.30001e-05 -0.0241138 -1.40955e-05)
+        viscous  : (1.28615e-07 -0.000679002 -6.8931e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136099 max: 1.95424
+deltaT = 2.948e-05
+Time = 0.000587281
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000587281 transformation: ((0 0 0) (0.998924 (0 0.0463785 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.960012, 1.02172, 1.00005
+AMI: Patch target sum(weights) min/max/average = 0.915567, 1.00128, 0.999815
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00834871, Final residual = 1.0835e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00454002, Final residual = 5.46748e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00834355, Final residual = 1.07991e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.020732, Final residual = 9.59485e-05, No Iterations 2
+time step continuity errors : sum local = 1.76629e-09, global = 4.78437e-10, cumulative = 5.8152e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.42202e-05, Final residual = 2.23555e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.30498e-05, Final residual = 9.91496e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.42119e-05, Final residual = 2.22981e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00365854, Final residual = 7.78698e-07, No Iterations 7
+time step continuity errors : sum local = 1.40733e-11, global = 2.52278e-12, cumulative = 5.81523e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000209439, Final residual = 3.3013e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000623565, Final residual = 1.46388e-07, No Iterations 2
+ExecutionTime = 102.54 s  ClockTime = 122 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-9.31192e-05 0.509889 -0.000186414)
+        viscous  : (6.21271e-07 -0.00594852 4.51452e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-9.93835e-06 -0.0242051 -1.28811e-05)
+        viscous  : (1.30566e-07 -0.000680393 -6.72705e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.013606 max: 1.95644
+deltaT = 2.948e-05
+Time = 0.000616761
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000616761 transformation: ((0 0 0) (0.998813 (0 0.0487048 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.969424, 1.02165, 1.00004
+AMI: Patch target sum(weights) min/max/average = 0.924282, 1.00119, 0.999846
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00822002, Final residual = 1.07562e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0043742, Final residual = 5.29859e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00821401, Final residual = 1.07229e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0197362, Final residual = 0.000109778, No Iterations 2
+time step continuity errors : sum local = 1.95103e-09, global = 5.74628e-10, cumulative = 5.82097e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.38129e-05, Final residual = 2.22423e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.28065e-05, Final residual = 9.71003e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.37752e-05, Final residual = 2.22126e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00363747, Final residual = 8.98347e-07, No Iterations 7
+time step continuity errors : sum local = 1.56746e-11, global = 2.71984e-12, cumulative = 5.821e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000208948, Final residual = 3.24516e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000614596, Final residual = 1.42764e-07, No Iterations 2
+ExecutionTime = 106.76 s  ClockTime = 127 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-7.55466e-05 0.510407 -0.000203315)
+        viscous  : (6.01316e-07 -0.0059692 4.5873e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.07342e-05 -0.0242892 -1.24534e-05)
+        viscous  : (1.32467e-07 -0.000681544 -6.62461e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0136023 max: 1.95856
+deltaT = 2.948e-05
+Time = 0.000646241
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.000646241 transformation: ((0 0 0) (0.998697 (0 0.0510308 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.967838, 1.02038, 1.00004
+AMI: Patch target sum(weights) min/max/average = 0.933625, 1.00107, 0.999882
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00810359, Final residual = 1.06875e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00420922, Final residual = 5.13168e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00809608, Final residual = 1.0656e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0191594, Final residual = 9.49609e-05, No Iterations 2
+time step continuity errors : sum local = 1.63011e-09, global = 4.52983e-10, cumulative = 5.82553e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.35001e-05, Final residual = 2.24198e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.21199e-05, Final residual = 9.31911e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.34626e-05, Final residual = 2.23655e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00361676, Final residual = 7.82796e-07, No Iterations 7
+time step continuity errors : sum local = 1.32102e-11, global = 2.29795e-12, cumulative = 5.82555e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000208319, Final residual = 3.19457e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000606911, Final residual = 1.3974e-07, No Iterations 2
+ExecutionTime = 111.12 s  ClockTime = 132 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-8.55786e-05 0.511116 -0.000177469)
+        viscous  : (5.77151e-07 -0.00598839 4.65214e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-9.85978e-06 -0.0243595 -1.06311e-05)
+        viscous  : (1.34524e-07 -0.00068247 -6.56115e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135987 max: 1.96055
+deltaT = 2.948e-05
+Time = 0.00067572
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00067572 transformation: ((0 0 0) (0.998576 (0 0.0533566 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.96616, 1.02086, 1.00004
+AMI: Patch target sum(weights) min/max/average = 0.943494, 1.00107, 0.999884
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00799271, Final residual = 1.06306e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00407313, Final residual = 4.99176e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00798313, Final residual = 1.05995e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0185871, Final residual = 7.53845e-05, No Iterations 2
+time step continuity errors : sum local = 1.25287e-09, global = 2.8349e-10, cumulative = 5.82839e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.31813e-05, Final residual = 2.21844e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.16349e-05, Final residual = 9.20153e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.32052e-05, Final residual = 2.2175e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00356519, Final residual = 5.8453e-07, No Iterations 7
+time step continuity errors : sum local = 9.56926e-12, global = 1.73752e-12, cumulative = 5.82841e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000207667, Final residual = 3.14827e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000599642, Final residual = 1.36791e-07, No Iterations 2
+ExecutionTime = 115.12 s  ClockTime = 138 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-7.75135e-05 0.512821 -0.000173229)
+        viscous  : (5.55243e-07 -0.00600618 4.70855e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.11908e-05 -0.0244273 -8.82873e-06)
+        viscous  : (1.36692e-07 -0.000683198 -6.61801e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135953 max: 1.96234
+deltaT = 2.948e-05
+Time = 0.0007052
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.0007052 transformation: ((0 0 0) (0.998449 (0 0.055682 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.964384, 1.02207, 1.00004
+AMI: Patch target sum(weights) min/max/average = 0.945225, 1.0012, 0.999846
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00788567, Final residual = 1.05834e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0039684, Final residual = 4.88635e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00787627, Final residual = 1.0555e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0177081, Final residual = 8.50803e-05, No Iterations 2
+time step continuity errors : sum local = 1.3736e-09, global = 3.90357e-10, cumulative = 5.83231e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.2906e-05, Final residual = 2.20026e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.14589e-05, Final residual = 8.81806e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.2907e-05, Final residual = 2.20712e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00353306, Final residual = 7.40417e-07, No Iterations 7
+time step continuity errors : sum local = 1.17713e-11, global = 2.04616e-12, cumulative = 5.83233e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000207458, Final residual = 3.1049e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000592876, Final residual = 1.34313e-07, No Iterations 2
+ExecutionTime = 119.5 s  ClockTime = 143 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-6.62403e-05 0.5134 -0.000176871)
+        viscous  : (5.36698e-07 -0.00602274 4.77009e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-1.07709e-05 -0.0244857 -1.0205e-05)
+        viscous  : (1.38841e-07 -0.000683739 -6.68099e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135919 max: 1.96402
+deltaT = 2.948e-05
+Time = 0.00073468
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00073468 transformation: ((0 0 0) (0.998316 (0 0.0580072 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.961315, 1.02226, 1.00005
+AMI: Patch target sum(weights) min/max/average = 0.92896, 1.00129, 0.999811
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00778655, Final residual = 1.0531e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0038484, Final residual = 4.7691e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00777695, Final residual = 1.0507e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0171968, Final residual = 8.285e-05, No Iterations 2
+time step continuity errors : sum local = 1.29899e-09, global = 3.61458e-10, cumulative = 5.83595e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.27508e-05, Final residual = 2.21785e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.11529e-05, Final residual = 8.6533e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.27106e-05, Final residual = 2.22264e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00354418, Final residual = 7.05135e-07, No Iterations 7
+time step continuity errors : sum local = 1.08941e-11, global = 1.91944e-12, cumulative = 5.83596e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.00020734, Final residual = 3.06538e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000586037, Final residual = 1.31941e-07, No Iterations 2
+ExecutionTime = 123.92 s  ClockTime = 148 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-4.83616e-05 0.513732 -0.000178256)
+        viscous  : (5.1889e-07 -0.00603822 4.8349e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-9.64366e-06 -0.024527 -1.13178e-05)
+        viscous  : (1.40855e-07 -0.000684116 -6.71819e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135887 max: 1.96556
+deltaT = 2.948e-05
+Time = 0.00076416
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00076416 transformation: ((0 0 0) (0.998178 (0 0.060332 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.950241, 1.02132, 1.00006
+AMI: Patch target sum(weights) min/max/average = 0.914718, 1.0015, 0.999783
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00769308, Final residual = 1.04831e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00374034, Final residual = 4.66169e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00768352, Final residual = 1.04625e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0165849, Final residual = 6.27232e-05, No Iterations 2
+time step continuity errors : sum local = 9.5644e-10, global = 2.27568e-10, cumulative = 5.83824e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.22929e-05, Final residual = 2.2144e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.08341e-05, Final residual = 8.39093e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.22584e-05, Final residual = 2.21592e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00350477, Final residual = 5.51698e-07, No Iterations 7
+time step continuity errors : sum local = 8.30439e-12, global = 1.49491e-12, cumulative = 5.83825e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000207063, Final residual = 3.03069e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.00057918, Final residual = 1.2951e-07, No Iterations 2
+ExecutionTime = 128.58 s  ClockTime = 153 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-5.43785e-05 0.514123 -0.000161535)
+        viscous  : (5.07855e-07 -0.00605271 4.90354e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-8.44552e-06 -0.0245455 -1.12776e-05)
+        viscous  : (1.42954e-07 -0.000684337 -6.77458e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135856 max: 1.96699
+deltaT = 2.948e-05
+Time = 0.00079364
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00079364 transformation: ((0 0 0) (0.998035 (0 0.0626565 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.937977, 1.02556, 1.00008
+AMI: Patch target sum(weights) min/max/average = 0.903061, 1.00178, 0.99976
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00760382, Final residual = 1.04463e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00366239, Final residual = 4.57938e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00759324, Final residual = 1.04285e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0161509, Final residual = 7.95154e-05, No Iterations 2
+time step continuity errors : sum local = 1.18274e-09, global = 3.08493e-10, cumulative = 5.84134e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.21222e-05, Final residual = 2.21655e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.07914e-05, Final residual = 8.31632e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.2108e-05, Final residual = 2.22276e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00351402, Final residual = 6.65554e-07, No Iterations 7
+time step continuity errors : sum local = 9.76845e-12, global = 1.70383e-12, cumulative = 5.84136e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000206866, Final residual = 2.99502e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000572634, Final residual = 1.27454e-07, No Iterations 2
+ExecutionTime = 133.05 s  ClockTime = 158 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-7.78376e-05 0.513935 -0.000143841)
+        viscous  : (4.96803e-07 -0.00606615 4.96521e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-7.97376e-06 -0.024569 -7.93627e-06)
+        viscous  : (1.44799e-07 -0.000684419 -6.81749e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135827 max: 1.96829
+deltaT = 2.948e-05
+Time = 0.00082312
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00082312 transformation: ((0 0 0) (0.997887 (0 0.0649807 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.928512, 1.03014, 1.0001
+AMI: Patch target sum(weights) min/max/average = 0.893918, 1.00214, 0.999742
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00752135, Final residual = 1.04186e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00357451, Final residual = 4.49284e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00751104, Final residual = 1.04015e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0156959, Final residual = 7.85385e-05, No Iterations 2
+time step continuity errors : sum local = 1.13915e-09, global = 3.06584e-10, cumulative = 5.84442e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.1891e-05, Final residual = 2.2445e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.06648e-05, Final residual = 8.36452e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.19248e-05, Final residual = 2.25077e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00351935, Final residual = 6.64036e-07, No Iterations 7
+time step continuity errors : sum local = 9.50814e-12, global = 1.66505e-12, cumulative = 5.84444e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000206655, Final residual = 2.96227e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000566532, Final residual = 1.25589e-07, No Iterations 2
+ExecutionTime = 137.52 s  ClockTime = 163 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-8.32333e-05 0.513894 -0.000126414)
+        viscous  : (4.83987e-07 -0.00607864 5.02065e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-7.00323e-06 -0.0245992 -6.84316e-06)
+        viscous  : (1.46476e-07 -0.00068437 -6.86183e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135798 max: 1.96939
+deltaT = 2.948e-05
+Time = 0.0008526
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.0008526 transformation: ((0 0 0) (0.997732 (0 0.0673045 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.921888, 1.03644, 1.00013
+AMI: Patch target sum(weights) min/max/average = 0.887226, 1.00254, 0.999734
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00744475, Final residual = 1.03893e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00348965, Final residual = 4.40961e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00743636, Final residual = 1.03752e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0154359, Final residual = 7.73078e-05, No Iterations 2
+time step continuity errors : sum local = 1.09418e-09, global = 3.05679e-10, cumulative = 5.8475e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.16517e-05, Final residual = 2.23026e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.05015e-05, Final residual = 8.15082e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.16691e-05, Final residual = 2.23744e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00355338, Final residual = 6.93831e-07, No Iterations 7
+time step continuity errors : sum local = 9.69558e-12, global = 1.676e-12, cumulative = 5.84751e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000206341, Final residual = 2.93034e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000560576, Final residual = 1.23494e-07, No Iterations 2
+ExecutionTime = 141.51 s  ClockTime = 169 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-8.2949e-05 0.513531 -0.000122828)
+        viscous  : (4.70666e-07 -0.00609024 5.06821e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-6.20501e-06 -0.0246207 -6.23453e-06)
+        viscous  : (1.48051e-07 -0.000684192 -6.94485e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.013577 max: 1.97034
+deltaT = 2.948e-05
+Time = 0.00088208
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00088208 transformation: ((0 0 0) (0.997573 (0 0.069628 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.918047, 1.0409, 1.00014
+AMI: Patch target sum(weights) min/max/average = 0.882936, 1.00275, 0.99972
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00737275, Final residual = 1.03614e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00340474, Final residual = 4.32922e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.0073646, Final residual = 1.03478e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0150215, Final residual = 7.97507e-05, No Iterations 2
+time step continuity errors : sum local = 1.10225e-09, global = -1.04954e-10, cumulative = 5.84646e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.14321e-05, Final residual = 2.20599e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1.00796e-05, Final residual = 8.23822e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.14222e-05, Final residual = 2.21705e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00350259, Final residual = 9.4118e-07, No Iterations 6
+time step continuity errors : sum local = 1.28831e-11, global = -2.32619e-12, cumulative = 5.84644e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000206012, Final residual = 2.91058e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000554566, Final residual = 1.21669e-07, No Iterations 2
+ExecutionTime = 145.84 s  ClockTime = 174 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000125513 0.514863 -0.000106138)
+        viscous  : (4.5333e-07 -0.00610097 5.10419e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-5.43297e-06 -0.0246308 -1.89285e-06)
+        viscous  : (1.49441e-07 -0.000683893 -7.05656e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135743 max: 1.97103
+deltaT = 2.948e-05
+Time = 0.00091156
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00091156 transformation: ((0 0 0) (0.997408 (0 0.071951 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.916948, 1.04405, 1.00016
+AMI: Patch target sum(weights) min/max/average = 0.881008, 1.00292, 0.999709
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00730101, Final residual = 1.03505e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00337044, Final residual = 4.29163e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00729378, Final residual = 1.03405e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0146171, Final residual = 6.21281e-05, No Iterations 2
+time step continuity errors : sum local = 8.43076e-10, global = 9.46176e-11, cumulative = 5.84739e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.11568e-05, Final residual = 2.18383e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 9.91864e-06, Final residual = 7.98998e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.11962e-05, Final residual = 2.20425e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00345385, Final residual = 9.27685e-07, No Iterations 6
+time step continuity errors : sum local = 1.24681e-11, global = 2.67134e-12, cumulative = 5.84741e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000205577, Final residual = 2.90376e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000548788, Final residual = 1.20126e-07, No Iterations 2
+ExecutionTime = 150.36 s  ClockTime = 179 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-8.98731e-05 0.515303 -0.000109988)
+        viscous  : (4.31756e-07 -0.00611088 5.13903e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-6.96127e-06 -0.024639 -3.49257e-06)
+        viscous  : (1.5077e-07 -0.000683482 -7.16219e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135718 max: 1.97146
+deltaT = 2.948e-05
+Time = 0.00094104
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00094104 transformation: ((0 0 0) (0.997238 (0 0.0742737 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.918559, 1.04629, 1.00017
+AMI: Patch target sum(weights) min/max/average = 0.881412, 1.00304, 0.999704
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00723517, Final residual = 1.03392e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00332115, Final residual = 4.24302e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00722771, Final residual = 1.03338e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.014195, Final residual = 5.44487e-05, No Iterations 2
+time step continuity errors : sum local = 7.24836e-10, global = 1.4774e-10, cumulative = 5.84889e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.09188e-05, Final residual = 2.18195e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 9.75974e-06, Final residual = 7.89746e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.09526e-05, Final residual = 2.20354e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.00342623, Final residual = 4.72845e-07, No Iterations 7
+time step continuity errors : sum local = 6.23276e-12, global = 1.18314e-12, cumulative = 5.8489e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000205113, Final residual = 2.89959e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000542752, Final residual = 1.18754e-07, No Iterations 2
+ExecutionTime = 154.67 s  ClockTime = 184 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-8.56646e-05 0.51542 -0.000137082)
+        viscous  : (4.06289e-07 -0.00611996 5.17235e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-7.75355e-06 -0.0246477 -3.62914e-06)
+        viscous  : (1.52084e-07 -0.000682972 -7.28235e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.0135693 max: 1.97165
+deltaT = 2.948e-05
+Time = 0.00097052
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.00097052 transformation: ((0 0 0) (0.997062 (0 0.076596 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.922866, 1.04565, 1.00019
+AMI: Patch target sum(weights) min/max/average = 0.884131, 1.00317, 0.999714
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.00717122, Final residual = 1.03283e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00326658, Final residual = 4.19243e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00716429, Final residual = 1.03254e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.014136, Final residual = 6.70895e-05, No Iterations 2
+time step continuity errors : sum local = 8.76023e-10, global = 2.33918e-10, cumulative = 5.85124e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.07842e-05, Final residual = 2.17932e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 9.70453e-06, Final residual = 7.6508e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.07726e-05, Final residual = 2.20349e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0034738, Final residual = 6.14145e-07, No Iterations 7
+time step continuity errors : sum local = 7.93395e-12, global = 1.37951e-12, cumulative = 5.85126e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000204852, Final residual = 2.89914e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000537166, Final residual = 1.17488e-07, No Iterations 2
+ExecutionTime = 159.19 s  ClockTime = 189 s
+
+forces forces output:
+    sum of forces:
+        pressure : (-9.05242e-05 0.514717 -9.59e-05)
+        viscous  : (3.8377e-07 -0.00612824 5.20003e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-5.30423e-06 -0.0246448 -2.58435e-06)
+        viscous  : (1.53376e-07 -0.000682371 -7.42951e-08)
+        porous   : (0 0 0)
+
+Courant Number mean: 0.013567 max: 1.97168
+deltaT = 2.948e-05
+Time = 0.001
+
+solidBodyMotionFunctions::rotatingMotion::transformation(): Time = 0.001 transformation: ((0 0 0) (0.996881 (0 0.0789179 0)))
+AMI: Creating addressing and weights between 18496 source faces and 18720 target faces
+AMI: Patch source sum(weights) min/max/average = 0.926446, 1.04716, 1.0002
+AMI: Patch target sum(weights) min/max/average = 0.886714, 1.00348, 0.999712
+PIMPLE: iteration 1
+smoothSolver:  Solving for Ux, Initial residual = 0.0071114, Final residual = 1.03139e-05, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.00319944, Final residual = 4.13044e-06, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 0.00710272, Final residual = 1.03135e-05, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.0139346, Final residual = 0.000101167, No Iterations 2
+time step continuity errors : sum local = 1.29434e-09, global = 3.8675e-10, cumulative = 5.85512e-07
+PIMPLE: iteration 2
+smoothSolver:  Solving for Ux, Initial residual = 2.07765e-05, Final residual = 2.20754e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 9.92651e-06, Final residual = 7.82676e-08, No Iterations 1
+smoothSolver:  Solving for Uz, Initial residual = 2.0777e-05, Final residual = 2.22442e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.003572, Final residual = 8.75116e-07, No Iterations 7
+time step continuity errors : sum local = 1.10589e-11, global = 1.83931e-12, cumulative = 5.85514e-07
+smoothSolver:  Solving for epsilon, Initial residual = 0.000204586, Final residual = 2.91191e-08, No Iterations 2
+smoothSolver:  Solving for k, Initial residual = 0.000531649, Final residual = 1.16239e-07, No Iterations 2
+ExecutionTime = 163.64 s  ClockTime = 194 s
+
+Q Q output:
+    writing field Q
+
+forces forces output:
+    sum of forces:
+        pressure : (-0.000108829 0.513466 -2.4313e-05)
+        viscous  : (3.63667e-07 -0.00613574 5.22501e-06)
+        porous   : (0 0 0)
+    sum of moments:
+        pressure : (-7.53977e-07 -0.0246633 9.38414e-07)
+        viscous  : (1.54581e-07 -0.00068169 -7.5905e-08)
+        porous   : (0 0 0)
+
+Time Profile: 
+	Total Time (s): 165.791
+	Main Loop Time (%): 93.9977
+	Read Controls Time (%): 0.00059171
+	Courant Number Time (%): 0.166837
+	Set Delta T Time (%): 0.000663487
+	Mesh Update Time (%): 15.9722
+	Absolute Flux Time (%): 0.0646967
+	Correct Phi Time (%): 1.32697e-05
+	Relative Flux Time (%): 0.0190143
+	Mesh Courant Number Time (%): 1.56824e-05
+	PIMPLE Time (%): 77.7616
+		U Equation Time (%): 29.3238
+		p Equation Time (%): 38.0198
+		Turbulence Model Equation Time (%): 10.4093
+	Write Time (%): 0.0103154
+	Info Time (%): 0.000930692
+End
+
+Finalising parallel run

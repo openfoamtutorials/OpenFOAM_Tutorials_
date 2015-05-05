@@ -14,6 +14,9 @@ Upcoming tutorials:
 	-point in surface for unstructured mesh size control.
 	-ce++ instead of manual identifiers.
 	-Include "";
--Two dimensional wind tunnel
+-Two dimensional simulation in openfoam
+-Profiling time computation of different solver subcomponents.
+-Spalart Allmaras Rotation / Curvature Correction Model (SARCM)
+-Validation of SARCM
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!
