@@ -8,5 +8,11 @@ Upcoming tutorials:
 -How to plot forces.
 -Custom nested AMI regions.
 -Custom AMI ramped rotation speed.
+-Does drafting (driving behind other cars) work to reduce drag?
+-Magnus effect
+-Gmsh tips:
+	-point in surface for unstructured mesh size control.
+	-ce++ instead of manual identifiers.
+	-Include "";
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!
