@@ -1,16 +1,17 @@
 This repository contains code for the OpenFOAM Tutorials YouTube channel: https://www.youtube.com/channel/UCHXaKLlZRQxkSG6dD6ZWvSg
 
 Upcoming tutorials:
--How to make a baffle surface.
--How to simulate a ducted fan.
--How to simulate the FanWing.
--How to simulate a cyclorotor.
--How to plot forces.
--Custom nested AMI regions.
--Custom AMI ramped rotation speed.
--Does drafting (driving behind other cars) work to reduce drag?
--Truck drag reduction devices: aft flaps, container skirts
--Magnus effect
+-Getting Started with OpenFOAM for Beginners
+-How to Make a Baffle (Thin Wall) in OpenFOAM
+-Ducted Fan Simulation in OpenFOAM
+-FanWing Simulation in OpenFOAM
+-Cyclorotor Simulation in OpenFOAM
+-How to Plot Forces in OpenFOAM
+-Compiling Custom Code in OpenFOAM: Nested AMI Regions
+-Compiling Custom Code in OpenFOAM: AMI Ramped Rotation Speed
+-Does Drafting Reduce Drag?
+-How Do Truck Flaps (Aft Flaps, Container Skirts) Reduce Drag?
+-Magnus Effect Simulation in OpenFOAM
 -Gmsh tips:
 	-point in surface for unstructured mesh size control.
 	-ce++ instead of manual identifiers.
