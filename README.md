@@ -1,7 +1,6 @@
 This repository contains code for the OpenFOAM Tutorials YouTube channel: https://www.youtube.com/channel/UCHXaKLlZRQxkSG6dD6ZWvSg
 
 Upcoming tutorials:
--Getting Started with OpenFOAM for Beginners
 -How to Make a Baffle (Thin Wall) in OpenFOAM
 -Ducted Fan Simulation in OpenFOAM
 -FanWing Simulation in OpenFOAM
