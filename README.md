@@ -18,5 +18,9 @@ Upcoming tutorials:
 -Profiling time computation of different solver subcomponents.
 -Spalart Allmaras Rotation / Curvature Correction Model (SARCM)
 -Validation of SARCM
+-Dispersion of spray in a room or wind tunnel
+-Design of HVAC ducts
+-3D axisymmetric N-S propeller simulation
+-Design of supersonic nozzle
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!
