@@ -22,5 +22,9 @@ Upcoming tutorials:
 -Design of HVAC ducts
 -3D axisymmetric N-S propeller simulation
 -Design of supersonic nozzle
+-Basic electromagnetics simulation
+-Electromagnetic simulation of Hendo hoverboard
+-Electromagnetic simulation of (brushless) motors
+-Simulation of cooling of brushless motors
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!
