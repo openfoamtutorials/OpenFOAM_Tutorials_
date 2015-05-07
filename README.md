@@ -9,6 +9,7 @@ Upcoming tutorials:
 -Custom nested AMI regions.
 -Custom AMI ramped rotation speed.
 -Does drafting (driving behind other cars) work to reduce drag?
+-Truck drag reduction devices: aft flaps, container skirts
 -Magnus effect
 -Gmsh tips:
 	-point in surface for unstructured mesh size control.
