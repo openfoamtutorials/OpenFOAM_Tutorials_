@@ -1,7 +1,0 @@
-gmsh mesh/main.geo -3 -o test.msh
-
-gmshToFoam test.msh -case case
-
-# Modify boundary file
-
-pimpleFoam

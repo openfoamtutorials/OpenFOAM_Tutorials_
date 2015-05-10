@@ -1,4 +1,4 @@
-Axisymmetric 2D Simulations in OpenFOAM
+Axisymmetric 2D Simulation in OpenFOAM
 
 All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/Axisymmetric2D
 
@@ -10,6 +10,12 @@ OUTLINE:
 -Convert the mesh and change the boundary file.
 -Change the write format in system/controlDict to 'binary' to prevent errors.
 -Run the simulation and view post-processed results.
+
+COMMANDS:
+gmsh mesh/main.geo -3 -o test.msh
+gmshToFoam test.msh -case case
+# Modify boundary file
+pimpleFoam
 
 This tutorial was run successfully on:
 -Ubuntu 14.04 64-bit
