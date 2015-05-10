@@ -1,7 +1,6 @@
 This repository contains code for the OpenFOAM Tutorials YouTube channel: https://www.youtube.com/channel/UCHXaKLlZRQxkSG6dD6ZWvSg
 
 Upcoming tutorials:
--How to Make a Baffle (Thin Wall) in OpenFOAM
 -Ducted Fan Simulation in OpenFOAM
 -FanWing Simulation in OpenFOAM
 -Cyclorotor Simulation in OpenFOAM
@@ -15,8 +14,6 @@ Upcoming tutorials:
 	-point in surface for unstructured mesh size control.
 	-ce++ instead of manual identifiers.
 	-Include "";
--Two dimensional simulation in openfoam
--Profiling time computation of different solver subcomponents.
 -Spalart Allmaras Rotation / Curvature Correction Model (SARCM)
 -Validation of SARCM
 -Dispersion of spray in a room or wind tunnel
@@ -24,8 +21,10 @@ Upcoming tutorials:
 -3D axisymmetric N-S propeller simulation
 -Design of supersonic nozzle
 -Basic electromagnetics simulation
--Electromagnetic simulation of Hendo hoverboard
--Electromagnetic simulation of (brushless) motors
 -Simulation of cooling of brushless motors
+-OpenFOAM Meshing: Gmsh STL + snappyHexMesh Tutorial
+-OpenFOAM Light Optimization Tips:
+	-Reordering
+	-Potential initialization
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!

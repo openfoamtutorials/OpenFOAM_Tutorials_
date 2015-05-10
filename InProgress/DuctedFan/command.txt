@@ -1,0 +1,7 @@
+gmsh mesh/main.geo -3 -o test.msh
+
+gmshToFoam test.msh -case case
+
+# Correct boundary file
+
+rotateMesh "(0 0 1)" "(-0.04361938736 0 0.99619469809)" -case case

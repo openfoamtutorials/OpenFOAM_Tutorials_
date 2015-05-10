@@ -1,0 +1,10 @@
+#!/bin/bash
+
+MD=$1 # Mesh directory.
+MN=$2 # Mesh name.
+GD=$3 # Gmsh directory.
+
+cd $MD
+../$GD/gmsh -3 $MN.geo > meshLog
+cd ../
+

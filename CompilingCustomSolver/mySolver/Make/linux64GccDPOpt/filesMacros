@@ -1,1 +1,0 @@
-EXE = $(FOAM_APPBIN)/mySolver

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CN=$1 # Case name.
+FN=$2 # File name.
+
+cp "case/0/$FN" "$CN/0/$FN"

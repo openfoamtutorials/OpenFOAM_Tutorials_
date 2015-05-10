@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CN=$1 # Case name.
+NP=$2 # Number of processors.
+
+cd $CN
+
+if [ "$NP" -gt "1" ]; then
+	renumberMesh -constant -overwrite
+	decomposePar
+	# mpirun -np $NP renumberMesh -overwrite -parallel
+else
+	renumberMesh -constant -overwrite
+fi
+
+cd ../

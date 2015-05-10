@@ -1,0 +1,15 @@
+#!/bin/bash
+
+CN=$1 # Case name.
+NP=$2 # Number of processors.
+SN=$3 # Solver name.
+
+cd $CN
+
+if [ "$NP" -gt "1" ]; then
+	mpirun -np $NP $SN -parallel > log
+else
+	$SN
+fi
+
+cd ../

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+CN=$1 # Case name.
+BCD=$2 # Boundary count difference.
+
+BF="constant/polyMesh/boundary" # Boundary file.
+
+cd $CN
+
+# Find line location of boundary count number.
+LL=$(grep -n "(" $BF | cut -d: -f1) # Find first occurence of '('; it will be the line after boundary count number.
+LL=$((LL-1))
+
+# Determine current boundary count.
+BC=$(sed -n "${LL}p" $BF) # BC: Boundary Count.
+
+# Calculate new boundary count.
+BC=$((BC+$BCD))
+
+# Update boundary count in file.
+sed -i "${LL}d" $BF
+sed -i "/(/i $BC" $BF
+
+cd ../
