@@ -1,10 +1,9 @@
-Axisymmetric Simulations in OpenFOAM
+Axisymmetric 2D Simulations in OpenFOAM
 
-All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/DuctedFan
+All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/Axisymmetric2D
 
 DESCRIPTION:
-Here we will do a simple axisymmetric simulation of a donut shape in freestream. The 'wedge' boundary condition will be introduced and details on setting up an axisymmetric case will be shown.
-
+Here we will do a simple 2D axisymmetric simulation of a donut shape in freestream. The 'wedge' boundary condition will be introduced and details on setting up an axisymmetric case will be shown.
 
 OUTLINE:
 -Use rotational extrude in Gmsh to create a wedge shape.
