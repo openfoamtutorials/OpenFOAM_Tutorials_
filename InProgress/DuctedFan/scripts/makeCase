@@ -1,6 +1,0 @@
-#!/bin/bash
-
-CN=$1 # Case name.
-
-rm -r $CN
-cp -r "case" $CN

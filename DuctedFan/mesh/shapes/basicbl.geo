@@ -1,5 +1,15 @@
 //Gmsh
 
+DFA = 0*Pi/180;//rad, duct flare angle.
+BLL = DC/20;//m, boundary layer length.
+BLC = 10;//m, boundary layer cells.
+BLP = 1.1;//boundary layer progression.
+TEMAD = -10*Pi/180;//m, te mesh angle addition.
+TELM = 2;//TE length multiplier.
+TELP = 1.05;//TE length progression.
+DLC = 2*LR/DLS;//duct lip cells.
+OPAA=20*Pi/180;//outer point angle adjustment.
+
 top=RCP*DC;
 bottom=top-DC;
 
@@ -14,8 +24,6 @@ Point(ce++)={innerx-LR,top,0,DLS};tp=ce;
 Point(ce++)={dtex,dtey,0,DLS};bp=ce;//Physical Point("test")={ce};
 Point(ce++)={innerx,0,0,DLS};rp=ce;
 
-Point(ce++)={innerx,-FSL,0,DLS};fslp=ce;
-
 //side1=(dtex-LR-RD/2)^2+(DC-LR)^2;
 //side2=LR;
 angle=Acos(LR/(Sqrt( (DC-LR)^2+(LR)^2 )));
@@ -24,8 +32,7 @@ Point(ce++)={innerx-LR*2+(1-Cos(OPAA))*LR,start-Sin(OPAA)*LR,0,DLS};op=ce;
 
 
 ductlines[]={};
-//Line(ce++)={rp,bp};ductlines[]+=ce;
-BSpline(ce++)={rp,fslp,bp};ductlines[]+=ce;
+Line(ce++)={rp,bp};ductlines[]+=ce;
 Line(ce++)={bp,op};ductlines[]+=ce;
 Circle(ce++)={op,cp,tp};ductlines[]+=ce;
 Circle(ce++)={tp,cp,ip};ductlines[]+=ce;
@@ -53,15 +60,13 @@ angle=-DFA/2;Call prepTrig;
 Point(ce++)={innerx-LR,start+LR+BLL,0};pts[]+=ce;//7
 Point(ce++)={innerx+BLL,start,0};pts[]+=ce;//8
 
-Point(ce++)={innerx+BLL,-FSL,0,DLS};fslp2=ce;
 //foo[]=Point{cp};
 //Rotate {{0, 0, 1}, {foo[0],foo[1],0}, EA} {
 //	Point{op,pts[6]};
 //}
 
 tangentlines[]={};
-BSpline(ce++)={pts[0],fslp2,pts[(1)]};tangentlines[]+=ce;
-For kk In {1:#pts[]-4}
+For kk In {0:#pts[]-4}
 	Line(ce++)={pts[kk],pts[(kk+1)%(#pts[])]};tangentlines[]+=ce;
 EndFor
 
@@ -99,8 +104,9 @@ WEDGE0[]+=ce;
 bb=ce;Call revolve;
 AIR[]+=vol;
 DUCT[]+=surf[3];
-ROTOR[]+=surf[2];
+ROTOR[]+=surf[0];
 WEDGE1[]+=newbase;
+
 
 lines[]={bllines[1],bllines[2],tangentlines[2],tangentlines[1]};
 Call autoLineLoop;
@@ -157,7 +163,6 @@ AIR[]+=vol;
 DUCT[]+=surf[3];
 //ROTOR[]+=surf[0];
 WEDGE1[]+=newbase;
-
 
 
 

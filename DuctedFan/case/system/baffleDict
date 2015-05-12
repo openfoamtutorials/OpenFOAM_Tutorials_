@@ -1,0 +1,90 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      createBafflesDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+internalFacesOnly true;
+
+baffles
+{
+    baffleFaces
+    {
+        type		faceZone;
+        zoneName	baffle;
+	    flip		false;
+	
+        patches
+        {
+            master
+            {
+                name            baffle;
+                type            fixedJump;
+                patchType       cyclic;
+                neighbourPatch	baffleother;
+                patchFields
+                {
+                    nut
+                    {
+                        type            cyclic;
+                    }
+                    nuTilda
+                    {
+                        type            cyclic;
+                    }
+                    p
+                    {
+                        type            fixedJump;
+                        patchType       cyclic;
+                        value           uniform 0;
+                        jump            uniform 800;
+                    }
+                    U
+                    {
+                        type            cyclic;
+                    }
+                }
+            }
+            slave
+            {
+                name            baffleother;
+                type            fixedJump;
+                patchType       cyclic;
+                neighbourPatch	baffle;
+                patchFields
+                {
+                    nut
+                    {
+                        type            cyclic;
+                    }
+                    nuTilda
+                    {
+                        type            cyclic;
+                    }
+                    p
+                    {
+                        type            fixedJump;
+                        patchType       cyclic;
+                        value           uniform 0;
+                    }
+                    U
+                    {
+                        type            cyclic;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ************************************************************************* // 

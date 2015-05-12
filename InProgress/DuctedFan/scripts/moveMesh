@@ -1,7 +1,0 @@
-#!/bin/bash
-
-CN=$1 # Case name.
-MD=$2 # Mesh directory.
-MN=$3 # Mesh name.
-
-mv mesh/$MN.msh $CN

@@ -1,8 +1,0 @@
-#!/bin/bash
-
-CN=$1 # Case name.
-MN=${2} # Mesh name.
-
-cd $CN
-gmshToFoam ./"main.msh" > convertLog
-cd ../

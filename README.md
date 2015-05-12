@@ -1,7 +1,6 @@
 This repository contains code for the OpenFOAM Tutorials YouTube channel: https://www.youtube.com/channel/UCHXaKLlZRQxkSG6dD6ZWvSg
 
 Upcoming tutorials:
--Ducted Fan Simulation in OpenFOAM
 -FanWing Simulation in OpenFOAM
 -Cyclorotor Simulation in OpenFOAM
 -How to Plot Forces in OpenFOAM
@@ -26,5 +25,6 @@ Upcoming tutorials:
 -OpenFOAM Light Optimization Tips:
 	-Reordering
 	-Potential initialization
+-How to Run OpenFOAM in Parallel with OpenMPI
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!

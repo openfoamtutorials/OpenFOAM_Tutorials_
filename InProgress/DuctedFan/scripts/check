@@ -1,7 +1,0 @@
-#!/bin/bash
-
-CN=$1
-
-cd $CN
-checkMesh -constant -allGeometry -allTopology
-cd ../

@@ -8,7 +8,7 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     class       volVectorField;
     location    "0";
     object      U;
@@ -25,10 +25,13 @@ boundaryField
     {
         type            wedge;
     }
-    duct
+    baffle
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        type            cyclic;
+    }
+    baffleother
+    {
+        type            cyclic;
     }
     wedge1
     {
@@ -45,13 +48,10 @@ boundaryField
         inletValue      uniform (0 0 0);
         value           uniform (0 -4.23 0);
     }
-    baffle
+    duct
     {
-        type            cyclic;
-    }
-    baffleother
-    {
-        type            cyclic;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
     tunnel
     {

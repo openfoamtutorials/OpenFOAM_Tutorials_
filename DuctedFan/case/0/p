@@ -1,0 +1,65 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    wedge0
+    {
+        type            wedge;
+    }
+    baffle
+    {
+        type            fixedJump;
+        patchType       cyclic;
+        jump            uniform 800;
+        value           uniform 0;
+    }
+    baffleother
+    {
+        type            fixedJump;
+        patchType       cyclic;
+        value           uniform 0;
+    }
+    wedge1
+    {
+        type            wedge;
+    }
+    inlet
+    {
+        type            zeroGradient;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    duct
+    {
+        type            zeroGradient;
+    }
+    tunnel
+    {
+        type            zeroGradient;
+    }
+}
+
+
+// ************************************************************************* //
