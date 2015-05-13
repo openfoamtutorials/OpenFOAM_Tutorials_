@@ -27,5 +27,6 @@ Upcoming tutorials:
 	-Potential initialization
 -How to Run OpenFOAM in Parallel with OpenMPI
 -How to do Post-Processing in ParaView
+-Conjugate Heat Transfer in OpenFOAM
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!
