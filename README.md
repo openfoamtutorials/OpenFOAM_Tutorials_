@@ -26,5 +26,6 @@ Upcoming tutorials:
 	-Reordering
 	-Potential initialization
 -How to Run OpenFOAM in Parallel with OpenMPI
+-Conjugate Heat Transfer in OpenFOAM
 
 If you would like to see a tutorial listed above or have a suggestion of your own, let me know through the YouTube channel!
