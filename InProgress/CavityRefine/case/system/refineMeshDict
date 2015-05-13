@@ -1,0 +1,64 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      refineMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Cells to refine; name of 'cellSet'
+set             cellZone_1; 
+
+// Type of coordinate system:
+// - global : coordinate system same for every cell. Usually aligned with
+//   x,y,z axis. Specify in globalCoeffs section below.
+// - patchLocal : coordinate system different for every cell. Specify in
+//   patchLocalCoeffs section below.
+coordinateSystem global;
+
+// Specifies 2 directions by a name and a vector. The normal direction is
+// calculated as tan1^tan2
+globalCoeffs
+{
+    tan1            ( 1 0 0 );
+    tan2            ( 0 1 0 );
+}
+
+patchLocalCoeffs
+{
+    // Normal direction is face normal of zero'th face of patch
+    patch           outside;
+    tan1            ( 1 0 0 );
+    tan2            ( 0 0 1 );
+}
+
+// Specifies the direction to be refined by the name used above
+// To refine in the third direction, use the keyword 'normal'
+directions      
+(
+    tan1
+    normal
+);
+
+// Whether to use hex topology. This will
+// - if patchLocal: all cells on selected patch should be hex
+// - split all hexes in 2x2x2 through the middle of edges.
+useHexTopology  yes; 
+
+// Cut purely geometric (will cut hexes through vertices) or take
+// topology into account. Incompatible with 'useHexTopology'
+geometricCut    no;
+
+// Write meshes from intermediate steps
+writeMesh       no;

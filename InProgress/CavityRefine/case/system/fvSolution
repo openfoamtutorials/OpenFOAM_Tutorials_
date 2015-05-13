@@ -1,0 +1,74 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//The following variables must have line numbers of 17-18.
+myPTolerance 1e-2;
+myUTolerance 1e-5;
+myTurbTolerance 1e-6;
+myRelaxation 1;
+
+solvers
+{
+    "(p|pFinal|pcorr)"
+    {
+	solver		 	GAMG;
+	mergeLevels 1;
+	smoother 		GaussSeidel;
+	agglomerator 		faceAreaPair;
+	nCellsInCoarsestLevel 100;
+	tolerance 		$myPTolerance;
+	relTol 0.1;
+    }
+    "(k|kFinal|omega|omegaFinal|epsilon|epsilonFinal|nuTilda|nuTildaFinal)"
+    {
+        solver           smoothSolver;//PBiCG
+        smoother         GaussSeidel;//preconditioner   DILU;
+        tolerance        $myTurbTolerance;
+        relTol 0.1;
+    }
+    "(U|UFinal)"
+    {
+	solver		 smoothSolver;//PBiCG
+        smoother	 GaussSeidel;//preconditioner   DILU;
+        tolerance        $myUTolerance;
+	relTol 0.1;
+    }
+}
+
+PIMPLE
+{
+    correctPhi          	no;
+    nOuterCorrectors 		1;
+    nCorrectors 		3;
+    nNonOrthogonalCorrectors 	1;
+    pRefCell           		0;
+    pRefValue           	0;
+}
+relaxationFactors
+{
+    fields
+    {
+        p               $myRelaxation;
+    }
+    equations
+    {
+        k               $myRelaxation;
+        U               $myRelaxation;
+        omega           $myRelaxation;
+        epsilon         $myRelaxation;
+        nuTilda         $myRelaxation;
+    }
+}
+// ************************************************************************* //
