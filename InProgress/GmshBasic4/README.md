@@ -5,8 +5,6 @@ DESCRIPTION:
 
 OUTLINE:
 
-COMMANDS:
-
 This tutorial was run successfully on:
 -Ubuntu 14.04 64-bit
 -OpenFOAM 2.3.1

@@ -3,6 +3,7 @@ This repository contains code for the OpenFOAM Tutorials YouTube channel: https:
 Upcoming tutorials:
 -FanWing Simulation in OpenFOAM
 -Cyclorotor Simulation in OpenFOAM
+-Compiling Custom Mesh Motion in OpenFOAM: Nested AMI Regions
 -How to Plot Forces in OpenFOAM
 -Compiling Custom Code in OpenFOAM: Nested AMI Regions
 -Compiling Custom Code in OpenFOAM: AMI Ramped Rotation Speed
