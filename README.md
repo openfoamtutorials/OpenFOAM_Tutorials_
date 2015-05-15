@@ -1,6 +1,8 @@
 This repository contains code for the OpenFOAM Tutorials YouTube channel: https://www.youtube.com/channel/UCHXaKLlZRQxkSG6dD6ZWvSg
 
 Upcoming tutorials:
+-Magnus Effect Simulation in OpenFOAM
+-Structural Analysis in OpenFOAM
 -Ground Effect Vehicle Airfoil Simulation in OpenFOAM (EKRANOPLAN EKRANOPLAN EKRANOPLAN)
 -FanWing Simulation in OpenFOAM
 -Cyclorotor Simulation in OpenFOAM
@@ -9,7 +11,6 @@ Upcoming tutorials:
 -Compiling Custom Code in OpenFOAM: AMI Ramped Rotation Speed
 -Does Drafting Reduce Drag?
 -How Do Truck Flaps (Aft Flaps, Container Skirts) Reduce Drag?
--Magnus Effect Simulation in OpenFOAM
 -Gmsh tips:
 	-point in surface for unstructured mesh size control.
 	-ce++ instead of manual identifiers.

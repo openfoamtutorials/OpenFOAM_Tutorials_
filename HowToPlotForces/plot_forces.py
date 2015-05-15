@@ -1,9 +1,16 @@
 #!/usr/bin/python
 
 import os
+import sys
 import math
 
 forces_file = "airFoil2D_new/postProcessing/airfoil/0/forces.dat"
+
+if not os.path.isfile(forces_file):
+	print "Forces file not found at "+forces_file
+	print "Be sure that the case has been run and you have the right directory!"
+	print "Exiting."
+	sys.exit()
 
 def line2dict(line):
 	tokens_unprocessed = line.split()
