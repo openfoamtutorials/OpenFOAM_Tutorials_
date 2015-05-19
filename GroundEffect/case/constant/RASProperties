@@ -10,27 +10,16 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "system";
-    object      controlDict;
+    location    "constant";
+    object      RASProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-applicationClass	pimpleFoam;
-startFrom        	latestTime;
-endTime			1;
-stopAt 			endTime;
-deltaT			1;
-writeControl    	adjustableRunTime;
-writeInterval		0.01;
-cycleWrite      	0;
-writeFormat     	ascii;
-writePrecision		6;
-writeCompression 	uncompressed;
-timeFormat      	general;
-timePrecision   	6;
-runTimeModifiable	yes;
-adjustTimeStep		yes;
-maxCo			5;
-maxDeltaT		1;
+RASModel        kEpsilon;
+
+turbulence      on;
+
+printCoeffs     on;
+
 
 // ************************************************************************* //

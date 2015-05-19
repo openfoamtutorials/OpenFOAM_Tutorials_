@@ -10,16 +10,28 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "constant";
-    object      RASProperties;
+    location    "system";
+    object      sampleDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-RASModel        SpalartAllmaras;
+interpolationScheme cellPoint;
 
-turbulence      on;
+setFormat       raw;
 
-printCoeffs     on;
+sets
+(
+    leftPatch
+    {
+        type    uniform;
+        axis    y;
+        start   ( 0 0.5 0.25 );
+        end     ( 0 2 0.25 );
+        nPoints 100;
+    }
+);
+
+fields          ( sigmaxx );
 
 
 // ************************************************************************* //

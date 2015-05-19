@@ -1,4 +1,4 @@
-Magnus Effect Simulation in OpenFOAM (and Hybrid Structured-Unstructured Mesh in Gmsh)
+Magnus Effect Simulation in OpenFOAM
 
 All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/MagnusEffect
 

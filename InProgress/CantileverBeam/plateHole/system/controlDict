@@ -15,22 +15,37 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-applicationClass	pimpleFoam;
-startFrom        	latestTime;
-endTime			1;
-stopAt 			endTime;
-deltaT			1;
-writeControl    	adjustableRunTime;
-writeInterval		0.01;
-cycleWrite      	0;
-writeFormat     	ascii;
-writePrecision		6;
-writeCompression 	uncompressed;
-timeFormat      	general;
-timePrecision   	6;
-runTimeModifiable	yes;
-adjustTimeStep		yes;
-maxCo			5;
-maxDeltaT		1;
+application     solidDisplacementFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         100;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   20;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+graphFormat     raw;
+
+runTimeModifiable true;
+
 
 // ************************************************************************* //

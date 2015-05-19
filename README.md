@@ -1,7 +1,6 @@
 This repository contains code for the OpenFOAM Tutorials YouTube channel: https://www.youtube.com/channel/UCHXaKLlZRQxkSG6dD6ZWvSg
 
 Upcoming tutorials:
--Magnus Effect Simulation in OpenFOAM
 -Structural Analysis in OpenFOAM
 -Ground Effect Vehicle Airfoil Simulation in OpenFOAM (EKRANOPLAN EKRANOPLAN EKRANOPLAN)
 -FanWing Simulation in OpenFOAM

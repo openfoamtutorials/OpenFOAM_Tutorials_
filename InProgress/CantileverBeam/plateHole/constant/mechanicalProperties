@@ -10,27 +10,30 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "system";
-    object      controlDict;
+    location    "constant";
+    object      mechanicalProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-applicationClass	pimpleFoam;
-startFrom        	latestTime;
-endTime			1;
-stopAt 			endTime;
-deltaT			1;
-writeControl    	adjustableRunTime;
-writeInterval		0.01;
-cycleWrite      	0;
-writeFormat     	ascii;
-writePrecision		6;
-writeCompression 	uncompressed;
-timeFormat      	general;
-timePrecision   	6;
-runTimeModifiable	yes;
-adjustTimeStep		yes;
-maxCo			5;
-maxDeltaT		1;
+rho
+{
+    type        uniform;
+    value       7854;
+}
+
+nu
+{
+    type        uniform;
+    value       0.3;
+}
+
+E
+{
+    type        uniform;
+    value       2e+11;
+}
+
+planeStress     yes;
+
 
 // ************************************************************************* //

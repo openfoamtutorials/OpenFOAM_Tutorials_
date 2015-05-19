@@ -9,28 +9,38 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    location    "system";
-    object      controlDict;
+    class       volScalarField;
+    location    "0";
+    object      epsilon;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-applicationClass	pimpleFoam;
-startFrom        	latestTime;
-endTime			1;
-stopAt 			endTime;
-deltaT			1;
-writeControl    	adjustableRunTime;
-writeInterval		0.01;
-cycleWrite      	0;
-writeFormat     	ascii;
-writePrecision		6;
-writeCompression 	uncompressed;
-timeFormat      	general;
-timePrecision   	6;
-runTimeModifiable	yes;
-adjustTimeStep		yes;
-maxCo			5;
-maxDeltaT		1;
+dimensions      [0 2 -3 0 0 0 0];
+
+internalField   uniform 0.000765;
+
+boundaryField
+{
+    frontAndBack
+    {
+        type            empty;
+    }
+    domain_boundary
+    {
+        type            freestream;
+        freestreamValue uniform 0.000765;
+    }
+    wing
+    {
+        type            epsilonWallFunction;
+        value           uniform 0;
+    }
+    ground
+    {
+        type            epsilonWallFunction;
+        value           uniform 0;
+    }
+}
+
 
 // ************************************************************************* //

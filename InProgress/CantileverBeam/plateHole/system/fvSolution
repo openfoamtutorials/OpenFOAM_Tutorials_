@@ -11,26 +11,31 @@ FoamFile
     format      ascii;
     class       dictionary;
     location    "system";
-    object      controlDict;
+    object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-applicationClass	pimpleFoam;
-startFrom        	latestTime;
-endTime			1;
-stopAt 			endTime;
-deltaT			1;
-writeControl    	adjustableRunTime;
-writeInterval		0.01;
-cycleWrite      	0;
-writeFormat     	ascii;
-writePrecision		6;
-writeCompression 	uncompressed;
-timeFormat      	general;
-timePrecision   	6;
-runTimeModifiable	yes;
-adjustTimeStep		yes;
-maxCo			5;
-maxDeltaT		1;
+solvers
+{
+    "(D|T)"
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0.9;
+        smoother        GaussSeidel;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 20;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+    }
+}
+
+stressAnalysis
+{
+    compactNormalStress yes;
+    nCorrectors     1;
+    D               1e-06;
+}
+
 
 // ************************************************************************* //

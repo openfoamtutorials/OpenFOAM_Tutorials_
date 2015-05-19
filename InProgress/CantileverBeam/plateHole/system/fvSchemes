@@ -11,26 +11,56 @@ FoamFile
     format      ascii;
     class       dictionary;
     location    "system";
-    object      controlDict;
+    object      fvSchemes;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-applicationClass	pimpleFoam;
-startFrom        	latestTime;
-endTime			1;
-stopAt 			endTime;
-deltaT			1;
-writeControl    	adjustableRunTime;
-writeInterval		0.01;
-cycleWrite      	0;
-writeFormat     	ascii;
-writePrecision		6;
-writeCompression 	uncompressed;
-timeFormat      	general;
-timePrecision   	6;
-runTimeModifiable	yes;
-adjustTimeStep		yes;
-maxCo			5;
-maxDeltaT		1;
+d2dt2Schemes
+{
+    default         steadyState;
+}
+
+ddtSchemes
+{
+    default         Euler;
+}
+
+gradSchemes
+{
+    default         leastSquares;
+    grad(D)         leastSquares;
+    grad(T)         leastSquares;
+}
+
+divSchemes
+{
+    default         none;
+    div(sigmaD)     Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         none;
+    laplacian(DD,D) Gauss linear corrected;
+    laplacian(DT,T) Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         none;
+}
+
+fluxRequired
+{
+    default         no;
+    D               yes;
+    T               no;
+}
+
 
 // ************************************************************************* //
