@@ -2,7 +2,6 @@ This repository contains code for the OpenFOAM Tutorials YouTube channel: https:
 
 Upcoming tutorials:
 -Structural Analysis in OpenFOAM
--Ground Effect Vehicle Airfoil Simulation in OpenFOAM (EKRANOPLAN EKRANOPLAN EKRANOPLAN)
 -FanWing Simulation in OpenFOAM
 -Cyclorotor Simulation in OpenFOAM
 -Compiling Custom Mesh Motion in OpenFOAM: Nested AMI Regions
