@@ -16,21 +16,21 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 C
-{
+{//Specific Heat, J/kg/K
     type        uniform;
-    value       434;
+    value       896;
 }
 
 k
-{
+{//Conductivity, W/m/K
     type        uniform;
-    value       60.5;
+    value       167;
 }
 
 alpha
-{
+{//Coefficient of thermal expansion, 1/K
     type        uniform;
-    value       1.1e-05;
+    value       2.36e-05;
 }
 
 thermalStress   no;

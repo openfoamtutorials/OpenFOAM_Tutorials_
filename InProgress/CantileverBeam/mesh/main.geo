@@ -9,8 +9,9 @@ hole_location_3 = 16.085*INCH_TO_METER;
 hole_location_2 = hole_location_3-2.5*INCH_TO_METER;
 width_gridsize = square_dimension/30;
 length_gridsize = length/150;
-hole_gridize = hole_diameter/20;
-thickness_gridlayers = 5;
+hole_gridsize = hole_diameter/20;
+thickness_gridlayers = 7;
+vertical_wall_gridlayers = 0.1*(square_dimension-2*thickness)/thickness*thickness_gridlayers;
 
 //Derived
 hole_section_dimension = square_dimension-2*thickness;
@@ -25,24 +26,24 @@ section_points_2[] = {};
 section_points_3[] = {};
 //fixed
 Point(ce++) = {hole_location_1-hole_section_dimension/2,0,0};section_points_1[] += ce;
-Point(ce++) = {hole_location_1-hole_diameter/2,0,0,hole_gridize};section_points_1[] += ce;
-Point(ce++) = {hole_location_1,0,0,hole_gridize};hole_centers[] += ce;
-Point(ce++) = {hole_location_1,0,hole_diameter/2,hole_gridize};section_points_1[] += ce;
-Point(ce++) = {hole_location_1+hole_diameter/2,0,0,hole_gridize};section_points_1[] += ce;
+Point(ce++) = {hole_location_1-hole_diameter/2,0,0,hole_gridsize};section_points_1[] += ce;
+Point(ce++) = {hole_location_1,0,0,hole_gridsize};hole_centers[] += ce;
+Point(ce++) = {hole_location_1,0,hole_diameter/2,hole_gridsize};section_points_1[] += ce;
+Point(ce++) = {hole_location_1+hole_diameter/2,0,0,hole_gridsize};section_points_1[] += ce;
 Point(ce++) = {hole_location_1+hole_section_dimension/2,0,0};section_points_1[] += ce;
 //first load
 Point(ce++) = {hole_location_2-hole_section_dimension/2,0,0};section_points_2[] += ce;
-Point(ce++) = {hole_location_2-hole_diameter/2,0,0,hole_gridize};section_points_2[] += ce;
-Point(ce++) = {hole_location_2,0,0,hole_gridize};hole_centers[] += ce;
-Point(ce++) = {hole_location_2,0,hole_diameter/2,hole_gridize};section_points_2[] += ce;
-Point(ce++) = {hole_location_2+hole_diameter/2,0,0,hole_gridize};section_points_2[] += ce;
+Point(ce++) = {hole_location_2-hole_diameter/2,0,0,hole_gridsize};section_points_2[] += ce;
+Point(ce++) = {hole_location_2,0,0,hole_gridsize};hole_centers[] += ce;
+Point(ce++) = {hole_location_2,0,hole_diameter/2,hole_gridsize};section_points_2[] += ce;
+Point(ce++) = {hole_location_2+hole_diameter/2,0,0,hole_gridsize};section_points_2[] += ce;
 Point(ce++) = {hole_location_2+hole_section_dimension/2,0,0};section_points_2[] += ce;
 //second load
 Point(ce++) = {hole_location_3-hole_section_dimension/2,0,0};section_points_3[] += ce;
-Point(ce++) = {hole_location_3-hole_diameter/2,0,0,hole_gridize};section_points_3[] += ce;
-Point(ce++) = {hole_location_3,0,0,hole_gridize};hole_centers[] += ce;
-Point(ce++) = {hole_location_3,0,hole_diameter/2,hole_gridize};section_points_3[] += ce;
-Point(ce++) = {hole_location_3+hole_diameter/2,0,0,hole_gridize};section_points_3[] += ce;
+Point(ce++) = {hole_location_3-hole_diameter/2,0,0,hole_gridsize};section_points_3[] += ce;
+Point(ce++) = {hole_location_3,0,0,hole_gridsize};hole_centers[] += ce;
+Point(ce++) = {hole_location_3,0,hole_diameter/2,hole_gridsize};section_points_3[] += ce;
+Point(ce++) = {hole_location_3+hole_diameter/2,0,0,hole_gridsize};section_points_3[] += ce;
 Point(ce++) = {hole_location_3+hole_section_dimension/2,0,0};section_points_3[] += ce;
 //tip
 Point(ce++) = {length,0,0};endpoint = ce;
@@ -155,11 +156,15 @@ Line(ce++) = {endpoint,outer_points[7]};mid2out[] += ce;
 
 Transfinite Line{mid2out[]} = hole_section_dimension/2/width_gridsize+1;
 Transfinite Line{out2edge[]} = thickness/width_gridsize+1;
-Transfinite Line{mid_lines[0],outer_lines[0],edge_lines[0]} = (hole_location_1-hole_section_dimension/2)/length_gridsize+1;
 Transfinite Line{outer_lines[{1,3,5}],edge_lines[{1,3,5}]} = hole_section_dimension/length_gridsize+1;
-Transfinite Line{mid_lines[5],outer_lines[2],edge_lines[2]} = (hole_location_2-hole_location_1-hole_section_dimension)/length_gridsize+1;
-Transfinite Line{mid_lines[10],outer_lines[4],edge_lines[4]} = (hole_location_3-hole_location_2-hole_section_dimension)/length_gridsize+1;
-Transfinite Line{mid_lines[15],outer_lines[6],edge_lines[6]} = (length-hole_location_3-hole_section_dimension/2)/length_gridsize+1;
+tmp_cells[] = {(hole_location_1-hole_section_dimension/2)/length_gridsize+1,
+				(hole_location_2-hole_location_1-hole_section_dimension)/length_gridsize+1,
+				(hole_location_3-hole_location_2-hole_section_dimension)/length_gridsize+1,
+				(length-hole_location_3-hole_section_dimension/2)/length_gridsize+1};
+Transfinite Line{mid_lines[0],outer_lines[0],edge_lines[0]} = tmp_cells[0];
+Transfinite Line{mid_lines[5],outer_lines[2],edge_lines[2]} = tmp_cells[1];
+Transfinite Line{mid_lines[10],outer_lines[4],edge_lines[4]} = tmp_cells[2];
+Transfinite Line{mid_lines[15],outer_lines[6],edge_lines[6]} = tmp_cells[3];
 
 
 
@@ -247,6 +252,7 @@ volumes[] = {};
 symmetry[] = {};
 symmetry2[] = {};
 fixed_hole[] = {};
+load_holes[] = {};
 
 
 
@@ -257,6 +263,34 @@ For k In {0:#mid_surfaces[]-1}
 	Extrude{0,thickness,0}
 	{
 		Surface{mid_surfaces[k]};
+		Layers{thickness_gridlayers};
+		Recombine;
+	};
+	volumes[] += new_entities[1];
+	plain_surface[] += new_entities[0];
+	symmetry[] += new_entities[2];
+	If(k == 0)
+		symmetry2[] += new_entities[5];
+	EndIf
+	If(k == #mid_surfaces[]-1)
+		plain_surface[] += new_entities[3];
+	EndIf
+	new_surf = new_entities[0];
+	new_mid_surf = 
+	Translate{0,square_dimension-2*thickness,0}
+	{
+		Duplicata { Surface { new_surf }; }
+	};
+	new_mid_surf_lines[] = Boundary{Surface{new_mid_surf};};
+	Transfinite Line{new_mid_surf_lines[{0,2}]} = tmp_cells[k];
+	Transfinite Line{new_mid_surf_lines[{1,3}]} = hole_section_dimension/2/width_gridsize+1;
+	Transfinite Surface{new_mid_surf};
+	Recombine Surface{new_mid_surf};
+	plain_surface[] += new_mid_surf;
+	new_entities[] = 
+	Extrude{0,thickness,0}
+	{
+		Surface{new_mid_surf};
 		Layers{thickness_gridlayers};
 		Recombine;
 	};
@@ -295,7 +329,7 @@ For k In {0:#edge_surfaces[]-1}
 	Extrude{0,square_dimension-2*thickness,0}
 	{
 		Surface{new_surf};
-		Layers{thickness_gridlayers};
+		Layers{vertical_wall_gridlayers};
 		Recombine;
 	};
 	volumes[] += new_entities[1];
@@ -341,7 +375,7 @@ For k In {0:#hole_surfaces[]-1}
 		fixed_hole[] += new_entities[{3,4}];
 	EndIf
 	If (k > 0)
-		plain_surface[] += new_entities[{3,4}];
+		load_holes[] += new_entities[{3,4}];
 	EndIf
 	new_surf = new_entities[0];
 	new_hole_surf = 
@@ -349,6 +383,9 @@ For k In {0:#hole_surfaces[]-1}
 	{
 		Duplicata { Surface { new_surf }; }
 	};
+	new_hole_surf_lines[] = Boundary{Surface{new_hole_surf};};
+	Transfinite Line{new_hole_surf_lines[{4,6}]} = hole_section_dimension/2/width_gridsize+1;
+	Transfinite Line{new_hole_surf_lines[5]} = hole_section_dimension/length_gridsize+1;
 	plain_surface[]+=new_hole_surf;
 	new_entities[] = 
 	Extrude{0,thickness,0}
@@ -357,6 +394,15 @@ For k In {0:#hole_surfaces[]-1}
 		Layers{thickness_gridlayers};
 		Recombine;
 	};
+	volumes[] += new_entities[1];
+	plain_surface[] += new_entities[0];
+	symmetry[] += new_entities[{2,5}];
+	If (k == 0)
+		fixed_hole[] += new_entities[{3,4}];
+	EndIf
+	If (k > 0)
+		load_holes[] += new_entities[{3,4}];
+	EndIf
 EndFor
 
 
@@ -364,4 +410,5 @@ Physical Surface("plain_surface") = {plain_surface[]};
 Physical Surface("symmetry") = {symmetry[]};
 Physical Surface("symmetry2") = {symmetry2[]};
 Physical Surface("fixed_hole") = {fixed_hole[]};
+Physical Surface("load_holes") = {load_holes[]};
 Physical Volume("solid") = {volumes[]};

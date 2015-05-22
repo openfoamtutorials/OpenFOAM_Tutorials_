@@ -13,6 +13,8 @@ Upcoming tutorials:
 	-point in surface for unstructured mesh size control.
 	-ce++ instead of manual identifiers.
 	-Include "";
+	-Boundary{}
+	-Duplicata{}
 -Spalart Allmaras Rotation / Curvature Correction Model (SARCM)
 -Validation of SARCM
 -Dispersion of spray in a room or wind tunnel

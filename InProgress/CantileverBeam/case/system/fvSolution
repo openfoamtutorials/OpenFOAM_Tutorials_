@@ -2,7 +2,7 @@
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  2.3.1                                 |
-|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -10,65 +10,33 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
+    location    "system";
     object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-//The following variables must have line numbers of 17-18.
-myPTolerance 1e-2;
-myUTolerance 1e-5;
-myTurbTolerance 1e-6;
-myRelaxation 1;
 
 solvers
 {
-    "(p|pFinal|pcorr)"
+    "(D|T|Dcorr)"
     {
-	solver		 	GAMG;
-	mergeLevels 1;
-	smoother 		GaussSeidel;
-	agglomerator 		faceAreaPair;
-	nCellsInCoarsestLevel 1500;
-	tolerance 		$myPTolerance;
-	relTol 0.1;
-    }
-    "(k|kFinal|omega|omegaFinal|epsilon|epsilonFinal|nuTilda|nuTildaFinal)"
-    {
-        solver           smoothSolver;//PBiCG
-        smoother         GaussSeidel;//preconditioner   DILU;
-        tolerance        $myTurbTolerance;
-        relTol 0.1;
-    }
-    "(U|UFinal)"
-    {
-	solver		 smoothSolver;//PBiCG
-        smoother	 GaussSeidel;//preconditioner   DILU;
-        tolerance        $myUTolerance;
-	relTol 0.1;
+        solver          GAMG;
+        tolerance       1e-08;
+        relTol          0.1;
+        smoother        GaussSeidel;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 100;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
     }
 }
 
-PIMPLE
+stressAnalysis
 {
-    correctPhi          	no;
-    nOuterCorrectors 		1;
-    nCorrectors 		3;
-    nNonOrthogonalCorrectors 	1;
-    pRefCell           		0;
-    pRefValue           	0;
+    compactNormalStress yes;
+    nCorrectors     10;
+    D               1e-08;
+    accelerationFactor .1;
 }
-relaxationFactors
-{
-    fields
-    {
-        p               $myRelaxation;
-    }
-    equations
-    {
-        k               $myRelaxation;
-        U               $myRelaxation;
-        omega           $myRelaxation;
-        epsilon         $myRelaxation;
-        nuTilda         $myRelaxation;
-    }
-}
+
+
 // ************************************************************************* //

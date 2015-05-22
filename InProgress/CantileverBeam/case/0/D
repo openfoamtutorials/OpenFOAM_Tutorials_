@@ -9,43 +9,45 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    location    "0";
-    object      k;
+    class       volVectorField;
+    object      D;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
+dimensions      [0 1 0 0 0 0 0];
 
-internalField   uniform 0.00325;
+internalField   uniform (0 0 0);
 
 boundaryField
 {
-    frontAndBack
+    symmetry
     {
-        type            empty;
+        type            symmetryPlane;
     }
-    tunnel
+    symmetry2
     {
-        type            slip;
+        type            fixedValue;//symmetryPlane;
+	value		uniform ( 0 0 0 );
     }
-    outlet
+    plain_surface
     {
-        type            inletOutlet;
-        inletValue      uniform 0.00325;
-        value           uniform 0.00325;
+        type            tractionDisplacement;
+        traction        uniform ( 0 0 0 );
+        pressure        uniform 0;
+        value           uniform (0 0 0);
     }
-    inlet
+    fixed_hole
     {
         type            fixedValue;
-        value           uniform 0.00325;
+        value           uniform (0 0 0);
     }
-    plate
+    load_holes
     {
-        type            kqRWallFunction;
-        value           uniform 0;
+        type            tractionDisplacement;
+        traction        uniform ( 0 2250000 0 );
+        pressure        uniform 0;
+        value           uniform (0 0 0);
     }
 }
-
 
 // ************************************************************************* //
