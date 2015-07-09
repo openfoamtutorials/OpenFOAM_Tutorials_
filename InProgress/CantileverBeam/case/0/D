@@ -20,31 +20,27 @@ internalField   uniform (0 0 0);
 
 boundaryField
 {
-    symmetry
+    frontAndBack
     {
-        type            symmetryPlane;
+        type            empty;
     }
-    symmetry2
+    left
     {
-        type            fixedValue;//symmetryPlane;
-	value		uniform ( 0 0 0 );
+        type            fixedValue;
+	    value		    uniform ( 0 0 0 );
     }
-    plain_surface
+    topAndBottom
     {
         type            tractionDisplacement;
         traction        uniform ( 0 0 0 );
         pressure        uniform 0;
         value           uniform (0 0 0);
     }
-    fixed_hole
-    {
-        type            fixedValue;
-        value           uniform (0 0 0);
-    }
-    load_holes
+    right
     {
         type            tractionDisplacement;
-        traction        uniform ( 0 2250000 0 );
+        //traction        uniform ( 0 50000 0 );
+        traction        uniform ( 0 62500 0 );
         pressure        uniform 0;
         value           uniform (0 0 0);
     }

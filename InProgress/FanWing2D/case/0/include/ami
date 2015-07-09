@@ -1,0 +1,6 @@
+//c++
+    ami00 { type cyclicAMI;value $internalField; }
+    ami01 { type cyclicAMI;value $internalField; }
+    //ami10 { type cyclicAMI;value $internalField; }
+    //ami11 { type cyclicAMI;value $internalField; }
+defaultFaces { type empty; }

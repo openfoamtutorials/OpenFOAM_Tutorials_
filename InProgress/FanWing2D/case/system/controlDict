@@ -1,0 +1,108 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                               |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+applicationClass	pimpleDyMFoam;
+startFrom        	latestTime;
+endTime			    2;
+stopAt 			    endTime;
+deltaT			    1;
+writeControl    	adjustableRunTime;
+writeInterval		0.01;
+cycleWrite      	0;
+writeFormat     	ascii;
+writePrecision		6;
+writeCompression 	uncompressed;
+timeFormat      	general;
+timePrecision   	6;
+runTimeModifiable	yes;
+adjustTimeStep		yes;
+maxCo			    10;
+maxDeltaT		    1;
+
+libs
+(
+    "libforces.so"
+);
+
+functions
+{
+    rotor0
+    {
+        patches		(blades0 singleBlade shaft0 cap0);
+	CofR		(0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    blades0
+    {
+        patches		(blades0 singleBlade);
+	CofR		(0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    shaft0
+    {
+        patches		(shaft0);
+	CofR		(0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    cap0
+    {
+        patches		(cap0);
+        CofR		(0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    singleBlade
+    {
+        patches		(singleBlade);
+	CofR		(0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    	//Total stuff
+    total
+    {
+        patches             (casing blades0 shaft0 cap0 singleBlade plate baffle);
+	CofR 		    (0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    stator
+    {
+        patches		(casing plate baffle);
+	CofR		(0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    baffle
+    {
+        patches         (baffle);
+        CofR            (0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+    plate
+    {
+        patches		(plate);
+        CofR		(0 0 0); //Origin for moment calculations
+        outputControl timeStep;outputInterval 5;
+        type forces;functionObjectLibs ("libforces.so");pName p;UName U;rhoName rhoInf;rhoInf 1.225;log true;
+    }
+}
+// ************************************************************************* //

@@ -22,41 +22,37 @@ d2dt2Schemes
 
 ddtSchemes
 {
-    default         steadyState;
+    default         Euler;
 }
 
 gradSchemes
 {
-    // default         leastSquares;
-    // grad(D)         leastSquares;
-    // grad(T)         leastSquares;
-    default         Gauss cubic;
+    default         leastSquares;
+    grad(D)         leastSquares;
+    grad(T)         leastSquares;
 }
 
 divSchemes
 {
-    // default         Gauss linear;
-    // div(sigmaD)     Gauss linear;
-    default         Gauss cubic;
+    default         none;
+    div(sigmaD)     Gauss linear;
 }
 
 laplacianSchemes
 {
-    default         Gauss linear uncorrected;
-    // laplacian(DD,D) Gauss linear corrected;
-    // laplacian(DT,T) Gauss linear corrected;
+    default         none;
+    laplacian(DD,D) Gauss linear corrected;
+    laplacian(DT,T) Gauss linear corrected;
 }
 
 interpolationSchemes
 {
-    default         cubic;
-    // default         linear;
+    default         linear;
 }
 
 snGradSchemes
 {
-    default         uncorrected;
-    // default         none;
+    default         none;
 }
 
 fluxRequired

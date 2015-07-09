@@ -3,7 +3,7 @@ Structural Simulation in OpenFOAM: Cantilever Beam
 All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/CantileverBeam
 
 DESCRIPTION:
-Here we will simulate a thin-walled square cantilever beam in OpenFOAM, using the solidDisplacementFoam solver. A mesh is made in Gmsh and pressure loads (AKA traction) are specified in the OpenFOAM case files.
+Here we will simulate a cantilever beam in OpenFOAM, using the solidDisplacementFoam solver. A mesh is made in Gmsh and pressure loads (AKA traction) are specified in the OpenFOAM case files. We examine the effects of square corners and how to circumvent the issues that arise.
 
 OUTLINE:
 -Go over mesh.
@@ -11,8 +11,20 @@ OUTLINE:
 -Run the solver.
 
 COMMANDS:
-gmsh mesh/main.geo -3 -o test.msh
-gmshToFoam test.msh -case case
+gmsh mesh/square.geo -3 -o square.msh
+gmshToFoam square.msh -case case
+# Modify boundary file.
+solidDisplacementFoam
+gmsh mesh/fillet.geo -3 -o fillet.msh
+gmshToFoam fillet.msh -case case
+# Modify boundary file.
+solidDisplacementFoam
+gmsh mesh/oneHole.geo -3 -o oneHole.msh
+gmshToFoam oneHole.msh -case case
+# Modify boundary file.
+solidDisplacementFoam
+gmsh mesh/twoHole.geo -3 -o twoHole.msh
+gmshToFoam twoHole.msh -case case
 # Modify boundary file.
 solidDisplacementFoam
 

@@ -1,0 +1,1 @@
+When manually making a transfinite surface from a surface loop, it will be necessary to reaffirm transfinite surface and recombination for surfaces that came out of an extrusion, if an error about incompatible surfaces arises.

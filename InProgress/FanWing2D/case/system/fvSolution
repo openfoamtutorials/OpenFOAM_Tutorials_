@@ -1,0 +1,65 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.5                                   |
+|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+myPTolerance	1e-4;
+myTolerance	1e-10;
+myRelaxation 1;
+
+solvers
+{
+    "(p|pFinal|pcorr)"
+    {
+    	solver		 	GAMG;
+    	mergeLevels 1;
+    	smoother 		GaussSeidel;
+    	agglomerator 		faceAreaPair;
+    	nCellsInCoarsestLevel 1500;
+    	tolerance 		$myPTolerance;
+    	relTol 0;
+    }
+    "(U|UFinal|k|kFinal|omega|omegaFinal|epsilon|epsilonFinal|nuTilda|nuTildaFinal)"//epsilon|R
+    {
+	   solver		 smoothSolver;//PBiCG
+       smoother	 GaussSeidel;//preconditioner   DILU;
+       tolerance        $myTolerance;
+	   relTol 0;
+    }
+}
+
+PIMPLE
+{
+    correctPhi          	no;
+    nOuterCorrectors 1;
+    nCorrectors 3;
+    nNonOrthogonalCorrectors 1;
+    pRefCell           		0;
+    pRefValue           	0;
+}
+relaxationFactors
+{
+    fields
+    {
+        p               $myRelaxation;
+    }
+    equations
+    {
+        k               $myRelaxation;
+        U               $myRelaxation;
+        omega           $myRelaxation;
+        epsilon         $myRelaxation;
+        nuTilda         $myRelaxation;
+    }
+}
+// ************************************************************************* //

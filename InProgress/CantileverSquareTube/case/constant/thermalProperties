@@ -1,0 +1,39 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+C
+{//Specific Heat, J/kg/K
+    type        uniform;
+    value       896;
+}
+
+k
+{//Conductivity, W/m/K
+    type        uniform;
+    value       167;
+}
+
+alpha
+{//Coefficient of thermal expansion, 1/K
+    type        uniform;
+    value       2.36e-05;
+}
+
+thermalStress   no;
+
+
+// ************************************************************************* //

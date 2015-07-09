@@ -17,14 +17,14 @@ FoamFile
 
 solvers
 {
-    "(D|T|Dcorr)"
+    "(D|T)"
     {
         solver          GAMG;
-        tolerance       1e-08;
-        relTol          0.1;
+        tolerance       1e-06;
+        relTol          0.9;
         smoother        GaussSeidel;
         cacheAgglomeration true;
-        nCellsInCoarsestLevel 100;
+        nCellsInCoarsestLevel 20;
         agglomerator    faceAreaPair;
         mergeLevels     1;
     }
@@ -33,9 +33,8 @@ solvers
 stressAnalysis
 {
     compactNormalStress yes;
-    nCorrectors     10;
-    D               1e-08;
-    accelerationFactor .1;
+    nCorrectors     1;
+    D               1e-06;
 }
 
 

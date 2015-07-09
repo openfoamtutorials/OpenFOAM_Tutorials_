@@ -20,23 +20,19 @@ internalField   uniform 300;
 
 boundaryField
 {
-    symmetry
+    frontAndBack
     {
-        type            symmetryPlane;
+        type            empty;
     }
-    symmetry2
-    {
-        type            symmetryPlane;
-    }
-    plain_surface
+    topAndBottom
     {
         type            zeroGradient;
     }
-    fixed_hole
+    left
     {
         type            zeroGradient;
     }
-    load_holes
+    right
     {
         type            zeroGradient;
     }
