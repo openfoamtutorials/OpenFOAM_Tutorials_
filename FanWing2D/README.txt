@@ -1,4 +1,4 @@
-FanWing Simulation in OpenFOAM (2D)
+FanWing Simulation in OpenFOAM Using Arbitrary Mesh Interface (AMI)
 
 All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/FanWing2D
 
