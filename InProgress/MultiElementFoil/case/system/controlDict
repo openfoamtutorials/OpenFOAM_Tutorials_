@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                            |
+|  \\    /   O peration     | Version:  2.3.1                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,26 +10,27 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "constant";
-    object      dynamicMeshDict;
+    location    "system";
+    object      controlDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dynamicFvMesh   solidBodyMotionFvMesh;
-
-motionSolverLibs ( "libfvMotionSolvers.so" );
-
-solidBodyMotionFvMeshCoeffs
-{
-    cellZone        rotorVolume0;
-
-    solidBodyMotionFunction  rotatingMotion;
-    rotatingMotionCoeffs
-    {
-        origin        (0 0 0);
-        axis          (0 0 -1);
-        omega         250; // rad/s
-    }
-}
+applicationClass	pimpleFoam;
+startFrom        	latestTime;
+endTime			1;
+stopAt 			endTime;
+deltaT			1;
+writeControl    	adjustableRunTime;
+writeInterval		0.01;
+cycleWrite      	0;
+writeFormat     	ascii;
+writePrecision		6;
+writeCompression 	uncompressed;
+timeFormat      	general;
+timePrecision   	6;
+runTimeModifiable	yes;
+adjustTimeStep		yes;
+maxCo			5;
+maxDeltaT		1;
 
 // ************************************************************************* //

@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                            |
+|  \\    /   O peration     | Version:  2.3.1                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -11,25 +11,29 @@ FoamFile
     format      ascii;
     class       dictionary;
     location    "constant";
-    object      dynamicMeshDict;
+    object      transportProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dynamicFvMesh   solidBodyMotionFvMesh;
+transportModel  Newtonian;
 
-motionSolverLibs ( "libfvMotionSolvers.so" );
+nu              nu [ 0 2 -1 0 0 0 0 ] 1e-05;
 
-solidBodyMotionFvMeshCoeffs
+CrossPowerLawCoeffs
 {
-    cellZone        rotorVolume0;
-
-    solidBodyMotionFunction  rotatingMotion;
-    rotatingMotionCoeffs
-    {
-        origin        (0 0 0);
-        axis          (0 0 -1);
-        omega         250; // rad/s
-    }
+    nu0             nu0 [ 0 2 -1 0 0 0 0 ] 1e-06;
+    nuInf           nuInf [ 0 2 -1 0 0 0 0 ] 1e-06;
+    m               m [ 0 0 1 0 0 0 0 ] 1;
+    n               n [ 0 0 0 0 0 0 0 ] 1;
 }
+
+BirdCarreauCoeffs
+{
+    nu0             nu0 [ 0 2 -1 0 0 0 0 ] 1e-06;
+    nuInf           nuInf [ 0 2 -1 0 0 0 0 ] 1e-06;
+    k               k [ 0 0 1 0 0 0 0 ] 0;
+    n               n [ 0 0 0 0 0 0 0 ] 1;
+}
+
 
 // ************************************************************************* //

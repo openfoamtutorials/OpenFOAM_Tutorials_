@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.0                            |
+|  \\    /   O peration     | Version:  2.3.1                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,26 +10,50 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "constant";
-    object      dynamicMeshDict;
+    object      fvSchemes;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dynamicFvMesh   solidBodyMotionFvMesh;
-
-motionSolverLibs ( "libfvMotionSolvers.so" );
-
-solidBodyMotionFvMeshCoeffs
+ddtSchemes
 {
-    cellZone        rotorVolume0;
+    default Euler;
+}
 
-    solidBodyMotionFunction  rotatingMotion;
-    rotatingMotionCoeffs
-    {
-        origin        (0 0 0);
-        axis          (0 0 -1);
-        omega         250; // rad/s
-    }
+gradSchemes
+{
+    default         Gauss linear;
+}
+
+divSchemes
+{
+    default         Gauss upwind;//Gauss linearUpwind leastSquares;
+    // div(phi,U)	Gauss linearUpwind grad(U);
+    // div(phi,nuTilda)     limitedLinear 1;
+    // div(phi,k)      limitedLinear 1;
+    // div(phi,omega)  limitedLinear 1;
+    div((nuEff*dev(T(grad(U))))) Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear limited 1;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         corrected;
+}
+
+fluxRequired
+{
+    default         no;
+    pcorr;
+    p;
 }
 
 // ************************************************************************* //
