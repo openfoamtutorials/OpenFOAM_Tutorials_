@@ -1,0 +1,97 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.5-dev                               |
+|   \\  /    A nd           | Revision: exported                              |
+|    \\/     M anipulation  | Web:      http://www.OpenFOAM.org               |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (15 0 0);
+
+boundaryField
+{
+    shaft0
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+    }
+    singleBlade
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+    }
+    blades0
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+    }
+    cap0
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+    }
+    /*
+    shaft1
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+    }
+    blades1
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+    }
+    cap1
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
+    }
+    */
+    baffle
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    plate
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    casing
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    inlet
+    {
+        type fixedValue;
+        value $internalField;
+    }
+    outlet
+    {
+        type inletOutlet;
+        inletValue uniform (0 0 0);
+        value $internalField;
+    }
+    tunnel
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    symmetry { type symmetryPlane; }
+    #include "include/ami"
+}
+
+
+// ************************************************************************* //

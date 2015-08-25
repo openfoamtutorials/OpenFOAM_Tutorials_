@@ -1,0 +1,10 @@
+#!/bin/bash
+
+gnuplot -persist > /dev/null 2>&1 << EOF
+	set title "Lift, Drag, and Moment Coefficients vs. Iteration"
+	set xlabel "Iteration"
+	set ylabel "Lift, Drag, or Moment Coefficient"
+	plot	"coefficients/cl" with lines,\
+			"coefficients/cd" with lines,\
+			"coefficients/cm" with lines
+EOF

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+gnuplot -persist > /dev/null 2>&1 << EOF
+	set title "Forces / Moments vs. Iteration"
+	set xlabel "Iteration"
+	set ylabel "Force or Moment (N or N*m)"
+	plot	"forces/lift" with lines,\
+			"forces/drag" with lines,\
+			"forces/moment" with lines
+EOF
