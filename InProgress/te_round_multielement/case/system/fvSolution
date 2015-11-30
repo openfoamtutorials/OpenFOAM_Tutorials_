@@ -29,21 +29,21 @@ solvers
 	agglomerator 		faceAreaPair;
 	nCellsInCoarsestLevel 1500;
 	tolerance 		$myPTolerance;
-	relTol 0.1;
+	relTol 0.01;
     }
     "(k|kFinal|omega|omegaFinal|epsilon|epsilonFinal|nuTilda|nuTildaFinal)"
     {
         solver           smoothSolver;//PBiCG
         smoother         GaussSeidel;//preconditioner   DILU;
         tolerance        $myTurbTolerance;
-        relTol 0.1;
+        relTol 0.01;
     }
     "(U|UFinal)"
     {
 	solver		 smoothSolver;//PBiCG
         smoother	 GaussSeidel;//preconditioner   DILU;
         tolerance        $myUTolerance;
-	relTol 0.1;
+	relTol 0.01;
     }
 }
 

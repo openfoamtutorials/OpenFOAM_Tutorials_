@@ -1,0 +1,22 @@
+For rampedAxisRotationMotion:
+mkdir rampedAxisRotationMotion;
+mkdir rampedAxisRotationMotion/Make;
+new files in rampedAxisRotationMotion/Make: 'files' and 'options'
+In 'files', the new source and new library names are defined. For nestedRotationMotion:
+	rampedAxisRotationMotion.C
+	LIB = $(FOAM_USER_LIBBIN)/libRampedAxisRotationMotion
+In 'options':
+	EXE_INC = \
+	-I$(LIB_SRC)/dynamicFvMesh/lnInclude
+	-I$(LIB_SRC)/dynamicFvMesh/solidBodyMotionFvMesh/lnInclude
+	LIB_LIBS = \
+	-lOpenFOAM \
+	-ldynamicFvMesh \
+	-lsolidBodyMotionFvMesh
+The make script:
+	#!/bin/bash
+	wclean
+	wmake libso
+	cp $FOAM_USER_LIBBIN/libRampedAxisRotationMotion.so $FOAM_LIBBIN
+Add this line to controlDict:
+	libs ( "libRampedAxisRotationMotion.so" )

@@ -11,7 +11,9 @@ gmshToFoam test.msh -case case
 # Set freestream velocity speed.
 # Modify boundary file.
 createBaffles -case case -dict system/baffleDict -overwrite
+decomposePar
 pimpleFoam
+mpirun -np 4 pimpleFoam -parallel
 
 This tutorial was run successfully on:
 -Ubuntu 14.04 64-bit

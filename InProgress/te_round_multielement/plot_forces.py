@@ -7,7 +7,7 @@ import math
 forces_file = "case/postProcessing/airfoil/0/forces.dat"
 
 cell_depth = 0.02
-chord = 1.12
+chord = 0.788
 surface_area = cell_depth*chord
 density = 1.18
 velocity = 11

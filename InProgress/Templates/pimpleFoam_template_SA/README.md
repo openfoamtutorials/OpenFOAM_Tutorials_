@@ -1,5 +1,6 @@
 
-All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/DuctedFan
+All code can be found at: 
+https://github.com/rlee32/OpenFOAM_Tutorials/tree/master/DuctedFan
 
 DESCRIPTION:
 
@@ -7,7 +8,7 @@ OUTLINE:
 
 COMMANDS:
 
-This tutorial was run successfully on:
+This tutorial was run successfully using:
 -Ubuntu 14.04 64-bit
--OpenFOAM 2.3.1
--Gmsh 2.9.3
+-OpenFOAM 3.0.0
+-Gmsh 2.11.0

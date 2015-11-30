@@ -1,0 +1,8 @@
+# 1 "options"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "options"
+EXE_INC = 	-I$(LIB_SRC)/dynamicFvMesh/lnInclude 	-I$(LIB_SRC)/dynamicFvMesh/solidBodyMotionFvMesh/lnInclude
+
+
+LIB_LIBS = 	-lOpenFOAM 	-ldynamicFvMesh

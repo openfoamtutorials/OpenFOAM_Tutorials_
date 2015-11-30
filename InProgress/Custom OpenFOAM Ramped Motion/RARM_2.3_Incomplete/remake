@@ -1,0 +1,4 @@
+#!/bin/bash
+wclean
+wmake libso
+sudo cp $FOAM_USER_LIBBIN/libRARM.so $FOAM_LIBBIN
