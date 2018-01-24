@@ -1,6 +1,7 @@
 Axisymmetric 2D Simulation in OpenFOAM
 
 All code can be found at: https://github.com/lordvon/OpenFOAM_Tutorials/tree/master/Axisymmetric2D
+The video can be found here: https://www.youtube.com/watch?v=MUGnlYncqck
 
 DESCRIPTION:
 Here we will do a simple 2D axisymmetric simulation of a donut shape in freestream. The 'wedge' boundary condition will be introduced and details on setting up an axisymmetric case will be shown.
