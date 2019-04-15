@@ -1,5 +1,7 @@
 This repository contains code for the OpenFOAM Tutorials YouTube channel: https://www.youtube.com/channel/UCHXaKLlZRQxkSG6dD6ZWvSg
 
+Note that I am no longer actively maintaining this repo! I now make a new repo for each tutorial.
+
 Upcoming tutorials:
 -Structural Analysis in OpenFOAM
 -FanWing Simulation in OpenFOAM (3D)
