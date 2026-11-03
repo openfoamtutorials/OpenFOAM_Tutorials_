@@ -124,6 +124,54 @@ R_GAS = 8.314
 RESIN_MASS_FRACTION = 0.30
 
 
+def ht_ratio(T, use_HT=True):
+    """HT/Hu (Table 3). use_HT=False -> 1 (Fig.3'teki alpha->1 egrisi)."""
+    k = KIN_976
+    if not use_HT or T >= k['HT_Tlim']:
+        return 1.0
+    return min(max(k['HT_slope'] * T + k['HT_icpt'], 1e-3), 1.0)
+
+
+def ls_rate(T, alpha, use_HT=True):
+    """Lee-Springer kur hizi d(alpha)/dt [1/s], T [K]."""
+    k = KIN_976
+    r = ht_ratio(T, use_HT)
+    psi = alpha / r
+    if psi >= k['B']:
+        return 0.0
+    K1 = k['A1'] * math.exp(-k['dE1'] / (R_GAS * T))
+    K2 = k['A2'] * math.exp(-k['dE2'] / (R_GAS * T))
+    rate = r * (K1 + K2 * psi ** k['a']) * (k['B'] - psi) ** k['b']
+    if k['c'] != 0.0:
+        rate *= (1.0 - psi ** k['d']) ** k['c']
+    return rate
+
+
+def kamal_terms():
+    """Abaqus *CURE KINETICS, DEFINITION=KAMAL terimleri (HT/Hu = 1, B = 1, c = 0):
+         a_dot = sum Z_i exp(-(E_i/R)/T) (b_i + a^m_i) (a_max - a)^n_i
+       Lee-Springer ile BIREBIR:  1. terim Z=A1, m=0 ; 2. terim Z=A2, m=a ; n=b
+       Satir: Z [1/s], E/R [K], m, n, b"""
+    k = KIN_976
+    return [(k['A1'], k['dE1'] / R_GAS, 0.0, k['b'], 0.0),
+            (k['A2'], k['dE2'] / R_GAS, k['a'], k['b'], 0.0)]
+
+
+def tabular_kinetics(T_list=None, a_step=0.01, use_HT=True):
+    """*CURE KINETICS, DEFINITION=TABULAR satirlari: (a_dot, alpha, T).
+       Table 3'teki HT/Hu(T) dahil Lee-Springer'i BIREBIR verir.
+       Siralama: her sicaklik blogu icinde alpha artar."""
+    if T_list is None:
+        T_list = [285.0 + 5.0 * i for i in range(45)]      # 285..505 K
+    n = int(round(1.0 / a_step))
+    rows = []
+    for T in T_list:
+        for i in range(n + 1):
+            a = i * a_step
+            rows.append((ls_rate(T, a, use_HT), a, T))
+    return rows
+
+
 def material_SI(col='A2'):
     """T300/976 ozelliklerini SI'ya cevirir. col: 'A1' veya 'A2'."""
     p = T300_976[col]

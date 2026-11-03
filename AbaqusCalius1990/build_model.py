@@ -18,11 +18,13 @@ Ne yapar (inp YAZMAZ):
   * Adim: *Coupled Temperature-Displacement, transient
   * Sinir kosullari: ic yuzey T = Tm(t), dis yuzey T = Tc(t) (amplitude), alt yuz U2=0
   * Etkilesim: BENCH -> *Tie ; EXP -> hard kontakt (ayrilabilir) + gap conductance
-  * Cikti istekleri (gauge dugumleri U1, NT11 ; h/2 elemanlari E22, E33, SDV)
+  * Cikti istekleri (gauge dugumleri U1, NT11 ; h/2 elemanlari E22, E33, TEMP;
+    DOC/DOCR/CURESE keyword ile)
   * Her model icin kw_<MODEL>.txt yazar: ELLE eklenecek keyword bloklari
         (malzemeler, *Depvar, *Heat Generation, burulma *Boundary, dugum
          numarali *Equation bloklari)
-  * Job olusturur (user=cure976_hetval.f) ama input YAZMAZ / calistirmaz.
+  * Kompozite global eksenlerle cakisik *Orientation atar (*CURE SHRINKAGE, ANISO icin)
+  * Job olusturur (alt program YOK) ama input YAZMAZ / calistirmaz.
 """
 from abaqus import *
 from abaqusConstants import *
@@ -161,7 +163,16 @@ def build(mname, case, inter, axial):
     setAl = pM.Set(name='ALL', faces=pM.faces)
     pM.SectionAssignment(region=setAl, sectionName='SEC_AL', offset=0.0,
                          offsetType=MIDDLE_SURFACE, offsetField='', thicknessAssignment=FROM_SECTION)
-    pC.Set(name='ALL', faces=pC.faces)
+    setCall = pC.Set(name='ALL', faces=pC.faces)
+    # Global (r, z, theta) ile cakisik yerel eksen: anizotrop veriler globalde verildigi
+    # halde *CURE SHRINKAGE, TYPE=ANISO'nun istedigi yerel oryantasyon saglanir.
+    dcs = pC.DatumCsysByThreePoints(name='CSYS_GLOBAL', coordSysType=CARTESIAN,
+                                    origin=(0.0, 0.0, 0.0), point1=(1.0, 0.0, 0.0),
+                                    point2=(0.0, 1.0, 0.0))
+    pC.MaterialOrientation(region=setCall, orientationType=SYSTEM, axis=AXIS_3,
+                           localCsys=pC.datums[dcs.id], fieldName='',
+                           additionalRotationType=ROTATION_NONE, angle=0.0,
+                           additionalRotationField='', stackDirection=STACK_3)
 
     # geometrik kenar setleri / yuzeyler
     pM.Set(name='E_IN', edges=_vedges(pM, [r0]))
@@ -218,7 +229,7 @@ def build(mname, case, inter, axial):
             report.append('%-12s %-7s r_hedef=%.6f r_dugum=%.6f m  dugum=%d'
                           % (iname, key, rg, rr, lab))
 
-    # h/2 civarindaki elemanlar (SDV, E22=eksenel, E33=hoop)
+    # h/2 civarindaki elemanlar (DOC, E22=eksenel, E33=hoop)
     rh2 = cd.gauge_radius(g, 'h2')
     labs = []
     for e in pC.elements:
@@ -279,7 +290,7 @@ def build(mname, case, inter, axial):
 
     # ---------------- cikti ----------------
     fo = m.fieldOutputRequests['F-Output-1']
-    fvars = ['S', 'E', 'THE', 'EE', 'U', 'NT', 'HFL', 'SDV']
+    fvars = ['S', 'E', 'THE', 'EE', 'U', 'NT', 'HFL']
     if inter != 'TIE':
         fvars += ['CSTRESS', 'CDISP']
     fo.setValues(variables=tuple(fvars), numIntervals=200)
@@ -288,7 +299,7 @@ def build(mname, case, inter, axial):
                                createStepName='CURE', variables=('U1', 'U2', 'NT11'),
                                region=a.instances[iname].sets[sname], frequency=1)
     m.HistoryOutputRequest(name='H_EL_H2', createStepName='CURE',
-                           variables=('E22', 'E33', 'TEMP', 'SDV1', 'SDV2', 'SDV3'),
+                           variables=('E22', 'E33', 'TEMP'),
                            region=iC.sets['EL_H2'], frequency=1)
 
     # ---------------- keyword dosyasi (Equation'lar dugum numarasiyla) ----------------
@@ -331,7 +342,6 @@ def build(mname, case, inter, axial):
         f.write('\n'.join(head) + '\n' + kw.all_blocks(case) + '\n**\n' + eq_block + '\n')
 
     mdb.Job(name=mname, model=mname, type=ANALYSIS, numCpus=1,
-            userSubroutine=os.path.join(HERE, 'cure976_hetval.f'),
             description='Calius 1990 - %s' % case)
     print('[OK] %s kuruldu -> kw_%s.txt' % (mname, mname))
 

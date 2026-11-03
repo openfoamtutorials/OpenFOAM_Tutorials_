@@ -10,13 +10,15 @@ Kaynak: *Filament Winding Cylinders: II. Validation of the Process Model*, J. Co
 | `check_1d.py` | Abaqus'tan bağımsız 1D kontrol modeli: kür kinetiği ve termoelastik gerinim hedefleri | `python3 check_1d.py` |
 | `build_model.py` | **Abaqus/CAE betiği.** Geometri, mesh, setler, yüzeyler, adım, amplitüdler, sınır koşulları, etkileşimler ve çıktı isteklerini kurar. **inp yazmaz.** | `abaqus cae noGUI=build_model.py` |
 | `kw_gen.py` | Elle eklenecek keyword bloklarını üretir. CAE betiği bunu çağırır ve `kw_<MODEL>.txt` dosyalarını yazar | `python3 kw_gen.py BENCH` (önizleme) |
-| `cure976_hetval.f` | HETVAL (976 kür kinetiği ve ekzoterm, SDV1–3) ve USDFLD (FV1 = α) | `abaqus job=... user=cure976_hetval.f` |
+| `cure976_tabular.txt` | `*CURE KINETICS, DEFINITION=TABULAR` için hazır veri (α̇, α, T); Tablo 3'teki HT/Hu(T) ile birebir | `python3 kw_gen.py tabular` ile yeniden üretilir |
+
+**Alt program yok.** Kür kinetiği, ekzoterm ve büzülme Abaqus 2025'in yerleşik *Curing Processes in Polymers* seçenekleriyle tanımlanır: `*CURE KINETICS`, `*CURE HEAT GENERATION`, `*CURE SHRINKAGE` ve `*USER DEFINED FIELD, TYPE=SPECIFIED` (FV1 = DOC).
 
 Çalışma sırası:
 
 1. `abaqus cae noGUI=build_model.py`: `calius1990_cylinders.cae` dosyasını ve `kw_BENCH_F6_TIE.txt`, `kw_F6_EXP.txt`, `kw_F1_EXP.txt`, `kw_F4_EXP.txt` dosyalarını üretir.
 2. CAE'de ilgili modeli açın. **Model → Edit Keywords** ile `kw_<MODEL>.txt` içindeki blokları dosyada belirtilen yerlere ekleyin (bkz. §4).
-3. Job → Write Input, ardından `abaqus job=BENCH_F6_TIE user=cure976_hetval.f`.
+3. Job → Write Input, ardından `abaqus job=BENCH_F6_TIE cpus=1`.
 4. Sonuçları ölçümlerle karşılaştırın (§5).
 
 > Mesh'i değiştirirseniz düğüm numaraları da değişir. Bu durumda `build_model.py`'yi yeniden çalıştırıp güncel `kw_*.txt` dosyasını kullanın, çünkü `*Equation` blokları düğüm numarası içerir.
@@ -58,7 +60,9 @@ Kontakt modunda eksenel eşitlik `*Equation` ile zaten sağlandığı için sür
 **Gerinim çıktısı.** Gauge'lar yüzeye yapıştırıldığı için gerinimler düğüm yer değiştirmesinden hesaplanır:
 - hoop: ε_θ = U1 / r (her `G_*` düğümünün history çıktısı)
 - eksenel: ε_z = U2(`MANDREL-1.TOP_MASTER`) / DZ
-- Ayrıca h/2 elemanlarında (`EL_H2`) E33 (hoop), E22 (eksenel), TEMP ve SDV1–3 history olarak alınır.
+- Ayrıca h/2 elemanlarında (`EL_H2`) E33 (hoop), E22 (eksenel) ve TEMP (CAE'den), DOC, DOCR ve CURESE (keyword ile) history olarak alınır.
+
+**Oryantasyon.** `*CURE SHRINKAGE, TYPE=ANISO` yerel oryantasyon istediği için CAE betiği kompozite global (r, z, θ) eksenleriyle çakışan bir `*Orientation` atar. Böylece tüm anizotrop veriler global eksenlerde, ±φ'ye göre önceden döndürülmüş olarak girilir.
 
 ## 4. Eklenecek keyword'ler
 
@@ -68,27 +72,37 @@ Kontakt modunda eksenel eşitlik `*Equation` ile zaten sağlandığı için sür
 
 | # | Keyword | Yer | Not |
 |---|---|---|---|
-| 1 | `*Conductivity`, `*Density`, `*Elastic`, `*Expansion`, `*Specific Heat` | `*Material, name=AL6061_EFF` altı | E = 10 Msi, ν = 0.33, **etkin** CTE = 15.8e-6/°F (Tablo 2) |
-| 2 | `*Conductivity, type=ORTHO` | `T300_976_P` ve `_M` altı | global (r, z, θ) eksenlerine döndürülmüş değerler |
-| 3 | `*Density`, `*Specific Heat` | aynı | |
-| 4 | `*Depvar` = 3 | aynı | SDV1 = α, SDV2 = ψ, SDV3 = dα/dt |
-| 5 | `*Elastic, type=ANISOTROPIC` (21 sabit) | aynı | Tablo 2'nin α ≥ 0.6 kolonu, ±φ'ye göre döndürülmüş; orientation gerekmez |
-| 6 | `*Expansion, type=ANISO` | aynı | Tablo 2 CTE'leri (§4.3'teki teste bakın) |
-| 7 | `*Heat Generation` | aynı | HETVAL'i çağırır (ekzoterm ve DOC) |
+| 1 | `*Physical Constants, absolute zero=0.` | model verisi, `*Heading` sonrası | sıcaklıklar K cinsinden |
+| 2 | `*Conductivity`, `*Density`, `*Elastic`, `*Expansion`, `*Specific Heat` | `*Material, name=AL6061_EFF` altı | E = 10 Msi, ν = 0.33, **etkin** CTE = 15.8e-6/°F (Tablo 2) |
+| 3 | `*Conductivity, type=ORTHO`, `*Density`, `*Specific Heat` | `T300_976_P` ve `_M` altı | global (r, z, θ) eksenlerine döndürülmüş |
+| 4 | `*Elastic, type=ANISOTROPIC` (21 sabit) | aynı | Tablo 2, α ≥ 0.6 kolonu, ±φ'ye göre döndürülmüş |
+| 5 | `*Expansion, type=ANISO` | aynı | Tablo 2 CTE'leri (§4.3'teki teste bakın) |
+| 6 | `*Cure Kinetics, definition=KAMAL` (2 terim) | aynı | Lee-Springer ile birebir (aşağıya bakın) |
+| 7 | `*Cure Heat Generation` | aynı | Q = w_reçine · Hu = 0.30 × 530 J/g = 1.59e5 J/kg; q = ρ·Q·α̇ |
 | 8 | `*Boundary` (`BOT_N`, DOF 5) | `*End Assembly` sonrası, `*Step` öncesi | burulma referansı |
 | 9 | `*Equation` (DOF 2 ve 5) | `*Assembly` içinde, `*End Assembly` öncesi | genelleştirilmiş düzlem gerinim ve burulma |
-| 10 | Job: `user=cure976_hetval.f` | komut satırı | |
+| 10 | `*Output, field/history` + `*Element Output: DOC, DOCR, CURESE` | `*Step` içinde, `*End Step` öncesi | kür çıktıları |
+
+**Lee-Springer → Kamal eşlemesi.** Tablo 3'teki model dα/dt = (HT/Hu)(K₁ + K₂ψᵃ)(1 − ψ)ᵇ şeklindedir. HT/Hu = 1 alınırsa Abaqus Kamal formu α̇ = Σ Zᵢ e^{−(Eᵢ/R)/θ}(bᵢ + α^{mᵢ})(α_max − α)^{nᵢ} ile birebir aynı olur:
+
+| Terim | Z (1/s) | E/R (K) | m | n | b |
+|---|---|---|---|---|---|
+| 1 | 4400 | 7517.4 | 0 | 1.22 | 0 |
+| 2 | 7500 | 6831.9 | 1.03 | 1.22 | 0 |
+
+m₁ = 0 olduğu için reaksiyon α = 0'dan kendiliğinden başlar; `*Initial Conditions, type=CURE` gerekmez. İki modelin hızlarını birkaç (T, α) noktasında sayısal olarak karşılaştırdım, aynı çıkıyor.
+
+Tablo 3'teki HT/Hu = 0.0044T − 1.1 terimi Z'yi sıcaklığa bağlı yaptığı için Kamal formuna girmez. Bu terimle birebir sonuç isterseniz `kw_gen.py` içinde `KINETICS = 'TABULAR'` yapın ve `cure976_tabular.txt` içeriğini `*Cure Kinetics, definition=TABULAR` altına yapıştırın (45 sıcaklık × 101 α = 4545 satır). Bu durumda α en fazla HT/Hu değerine ulaşır, ayrıca `*Cure Max Conversion` gerekmez.
 
 ### 4.2 F1/F4/F6_EXP (deneysel yüzey sıcaklıkları), §4.1'e ek olarak
 
 | Keyword | Amaç |
 |---|---|
+| `*User Defined Field, type=SPECIFIED` / `1, DOC` | FV1 = DOC (USDFLD gerekmez) |
 | `*Elastic, type=ANISOTROPIC, dependencies=1` (iki satır: FV1 = 0.2 ve FV1 = 0.6) | Özellikler α ≤ 0.2 ve α ≥ 0.6 için sabit, arada doğrusal (makaledeki kabul) |
-| `*User Defined Field` | USDFLD: FV1 = SDV1 = α |
-| `*Expansion, type=ANISO, user` (+ **UEXPAN**) | Reçine büzülmesi ε = η Δα; η₂₂ = η₃₃ = 1.25e-2, η₁₁ = 0. Şekil 35'te büzülmenin hoop gerinimine etkisi yaklaşık 1000–1500 µε |
-| (Önerilir) `*User Material, constants=…, type=MECHANICAL` + **UMAT** | Aşağıdaki uyarıya bakın |
+| `*Cure Shrinkage, type=ANISO, dependencies=1` | ε̇ˢ = −γ α̇; plyda γ₂₂ = γ₃₃ = η = 1.25e-2, γ₁₁ = 0, global eksenlere döndürülmüş. Yalnızca 0.2 < DOC < 0.6 aralığında etkin (Appendix'te η, Δα = α₂ − α₁ = 0.4 ile türetilmiş); toplam enine büzülme yaklaşık 5000 µε |
 
-> **Önemli uyarı (2. aşama).** Abaqus `*Elastic` total formdadır: σ = D(α)·ε_el. Jelleşmede D yaklaşık 100 kat arttığı için, ısınmada birikmiş elastik gerinim anında büyük sahte gerilmeye dönüşür. Ölçümler, kompozitin mandrel genleşmiş haldeyken kürlendiğini gösteriyor (Şekil 29–30'da tutma süresince yaklaşık 4000 µε sabit kalıyor). Bu davranışı yakalamak için artımsal bir UMAT gerekir: Δσ = D(α_{n+1})·(Δε − Δε_th − Δε_sh). Bu UMAT büzülmeyi de içerdiği için UEXPAN ve USDFLD'ye ihtiyaç kalmaz. 1. aşamada özellikler sabit olduğundan bu sorun yoktur.
+> **Önemli uyarı (2. aşama).** Abaqus `*Elastic` total formdadır: σ = D(DOC)·ε_el. Jelleşmede D yaklaşık 100 kat arttığı için, ısınmada birikmiş elastik gerinim sahte gerilmeye dönüşebilir. Ölçümler, kompozitin mandrel genleşmiş haldeyken kürlendiğini gösteriyor (Şekil 29–30'da tutma süresince yaklaşık 4000 µε sabit kalıyor). Sonuçlarda bekleme başında gerinim sıçraması görürseniz yerleşik kür çerçevesinin önerdiği şekilde `*Viscoelastic` + `*TRS` (DOC'a bağlı) tanımı ya da artımsal bir UMAT gerekebilir. 1. aşamada özellikler sabit olduğundan bu sorun yoktur.
 
 ### 4.3 CTE kayma konvansiyonu testi (bir kez yapın)
 
@@ -98,9 +112,9 @@ Kontakt modunda eksenel eşitlik `*Equation` ile zaten sağlandığı için sür
 
 ## 5. Hedef değerler
 
-**BENCH (Şekil 3 ve 5, h/2).** `check_1d.py` ve HETVAL'in gfortran ile test sürücüsü aynı sonucu veriyor:
+**BENCH (Şekil 3 ve 5, h/2).** `check_1d.py` sonuçları:
 
-| t (saat) | T (°F) | α (Tablo 3 HT/Hu) | ψ | α (HT/Hu = 1) |
+| t (saat) | T (°F) | α (TABULAR, Tablo 3 HT/Hu) | ψ | α (KAMAL, HT/Hu = 1) |
 |---|---|---|---|---|
 | 0.75 | 287 | 0.019 | 0.027 | 0.030 |
 | 1.00 | 350 | 0.19 | 0.21 | 0.24 |
@@ -108,7 +122,7 @@ Kontakt modunda eksenel eşitlik `*Equation` ile zaten sağlandığı için sür
 | 1.50 | 350 | 0.78 | 0.89 | 0.89 |
 | 2.00 | 350 | 0.86 | 0.98 | 0.98 |
 
-Şekil 3'teki α eğrisi 1.0'a gidiyor. Tablo 3'teki HT/Hu ile α en fazla 0.88'e ulaşır; bu yüzden Şekil 3'ün ψ'yi ya da HT/Hu = 1 durumunu çizdiğini düşünüyorum. SDV2 = ψ olarak kaydediliyor; HETVAL içindeki `IHT` anahtarı ile iki durum karşılaştırılabilir.
+Şekil 3'teki α eğrisi 1.0'a gidiyor. Tablo 3'teki HT/Hu ile α en fazla 0.88'e ulaşır; bu yüzden Şekil 3'ün ψ'yi ya da HT/Hu = 1 durumunu çizdiğini düşünüyorum. Varsayılan `KAMAL` tanımı HT/Hu = 1 durumuna karşılık gelir. `TABULAR` tanımıyla iki durum karşılaştırılabilir.
 
 | Gerinim, hold (ΔT = 275 °F) | Şekil 5 | 1D kontrol | Abaqus'ta beklenen |
 |---|---|---|---|
@@ -126,7 +140,7 @@ Sabit özellikler ve büzülmesiz durumda gerinim ΔT ile doğrusaldır ve soğu
 | F-6 | makalede verilmemiş (et ince, yüzey sıcaklığına eşit) | Şekil 29 (mandrel iç yüzeyi), Şekil 30 (h/2), Şekil 31 (eksenel kayma), Şekil 37 (halka) |
 
 Notlar:
-- F-4'te mandrel yüzeyi yaklaşık 415 °F'a çıkıyor (ekzoterm). Bu tepe `RESIN_MASS_FRACTION` (HETVAL'de `WR = 0.30`) değerine duyarlı; makale bu oranı vermiyor.
+- F-4'te mandrel yüzeyi yaklaşık 415 °F'a çıkıyor (ekzoterm). Bu tepe `RESIN_MASS_FRACTION = 0.30` değerine (yani `*Cure Heat Generation` içindeki Q'ya) duyarlı; makale bu oranı vermiyor.
 - F-6'da eksenel gerinim ölçümü modelden yaklaşık 500 µε düşük. Makaleye göre bunun nedeni mandrel ile kompozit arasındaki eksenel kayma (Şekil 31). Ölçümle karşılaştırmak için `SLIP` modunu bir üst sınır olarak deneyin.
 - Kubbe etkisi 6 inç çaplı silindirlerde hoop gerinimini yaklaşık 600 µε etkiliyor (Şekil 33–34). Dilim modeli bu etkiyi içermez.
 
@@ -135,4 +149,5 @@ Notlar:
 - Şekil 13–14'ten okunan yüzey sıcaklıkları **gözle okunmuş yaklaşık değerlerdir** (±10 °F). Doğrulamadan önce WebPlotDigitizer ile sayısallaştırıp `calius_data.SURFACE_T_F` içine yazın. BENCH profili ise Tablo 1'den tam olarak kurulur.
 - Sargı gerginliğinden gelen başlangıç gerilmesi ve lif hareketi/sıkışma (Şekil 4) modellenmedi. Gauge'lar fırın başında sıfırlandığı için gerinim karşılaştırması bundan az etkilenir; gerilme karşılaştırması ise etkilenir. Gerekirse `*Initial Conditions, type=STRESS` ile eklenebilir.
 - Tablo 2'deki G₂₃ = 1.09 Msi ve ν₂₃ = 0.25 birbiriyle uyumsuz ama makaleye sadık kalmak için tablo değerleri kullanıldı.
+- `*Cure Heat Generation` veri satırını (tek değer: Q) yüklediğiniz belgelerdeki q = ρ₀Qα̇ tanımından çıkardım; o keyword'ün kendi sayfası elimde yoktu. 2025 dokümanından satır biçimini bir kez teyit edin.
 - `build_model.py` bu ortamda Abaqus olmadığı için **çalıştırılmadı**; yalnızca sözdizimi kontrol edildi. CAE'de hata çıkarsa (ör. `CGAX4T` sabiti veya `main=`/`secondary=` argümanları) bana mesaj satırını iletin.

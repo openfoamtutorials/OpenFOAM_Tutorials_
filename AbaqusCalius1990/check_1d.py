@@ -20,18 +20,9 @@ import calius_data as cd
 
 # ---------------------------------------------------------------- kinetik
 def dadt(T, alpha, use_HT=True):
-    k = cd.KIN_976
-    HT = min(k['HT_slope'] * T + k['HT_icpt'], 1.0) if (use_HT and T < k['HT_Tlim']) else 1.0
-    HT = max(HT, 1e-3)
-    psi = alpha / HT
-    if psi >= k['B']:
-        return 0.0, psi
-    K1 = k['A1'] * math.exp(-k['dE1'] / (cd.R_GAS * T))
-    K2 = k['A2'] * math.exp(-k['dE2'] / (cd.R_GAS * T))
-    r = HT * (K1 + K2 * psi ** k['a']) * (k['B'] - psi) ** k['b']
-    if k['c'] != 0.0:
-        r *= (1.0 - psi ** k['d']) ** k['c']
-    return r, psi
+    """Lee-Springer hizi (calius_data.ls_rate). Abaqus KAMAL (HT/Hu=1) ve
+    TABULAR (HT/Hu tablosu) tanimlari bununla birebir aynidir."""
+    return cd.ls_rate(T, alpha, use_HT), min(alpha / cd.ht_ratio(T, use_HT), 1.0)
 
 
 def interp(pts, t):
@@ -114,7 +105,7 @@ if __name__ == '__main__':
     print('=== 1) BENCH kur kinetigi (Fig.3 ile karsilastir) ===')
     for use_HT in (True, False):
         h = cure_history('BENCH', use_HT)
-        print('  HT/Hu %s:' % ('Table3 (0.0044T-1.1)' if use_HT else '= 1'))
+        print('  HT/Hu %s:' % ('Table3 (0.0044T-1.1)  -> Abaqus *CURE KINETICS, TABULAR' if use_HT else '= 1  -> Abaqus *CURE KINETICS, KAMAL'))
         for th in (0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0, 6.0):
             row = min(h, key=lambda x: abs(x[0] - th * 3600))
             print('    t=%4.2f h  T=%6.1f F  alpha=%.3f  psi=%.3f' % (th, cd.k2f(row[1]), row[2], row[3]))
