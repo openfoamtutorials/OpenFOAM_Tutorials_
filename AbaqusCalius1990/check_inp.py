@@ -4,7 +4,7 @@ Kullanim: python3 check_inp.py inp/BENCH_F6_TIE.inp 152.7778   (dT [K] = 275 F)
 inp dosyasini okur, CGAX4 termoelastik problemi uniform dT altinda cozer:
 mesh baglantisi, malzeme sirasi, *Equation, *Tie ve *Boundary kontrolu.
 Kontakt modelinde arayuz radyalde bagli kabul edilir; *Elastic icin ilk satir
-(EXP modellerinde DOC<=0.2 kurlenmemis ozellikler) kullanilir.
+(EXP modellerinde DOC<=0.2 kurlenmemis ozellikler) kullanilir."""
 import sys, re, numpy as np
 path, dT = sys.argv[1], float(sys.argv[2])
 lines=[l.rstrip() for l in open(path) if not l.startswith('**')]

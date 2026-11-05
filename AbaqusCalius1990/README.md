@@ -14,6 +14,18 @@ Kaynak: *Filament Winding Cylinders: II. Validation of the Process Model*, J. Co
 
 **Alt program yok.** Kür kinetiği, ekzoterm ve büzülme Abaqus 2025'in yerleşik *Curing Processes in Polymers* seçenekleriyle tanımlanır: `*CURE KINETICS`, `*CURE HEAT GENERATION`, `*CURE SHRINKAGE` ve `*USER DEFINED FIELD, TYPE=SPECIFIED` (FV1 = DOC).
 
+### Doğrudan inp (önerilen, en hızlı yol)
+
+```bash
+python3 write_inp.py                       # inp/BENCH_F6_TIE.inp, F6_EXP, F1_EXP, F4_EXP
+abaqus job=BENCH_F6_TIE input=inp/BENCH_F6_TIE.inp cpus=1
+python3 check_inp.py inp/BENCH_F6_TIE.inp 152.7778   # isteğe bağlı bağımsız kontrol (ΔT = 275 °F)
+```
+
+`write_inp.py`, CAE betiğiyle aynı modeli tek bir düz (part/assembly'siz) inp olarak yazar: mesh, setler, yüzeyler, oryantasyon, malzemeler, kür keyword'leri, `*Equation`, `*Tie`/`*Contact Pair`, amplitüdler, başlangıç koşulları, adım ve çıktılar. Elle keyword eklemek gerekmez. Düğüm numaralandırması: mandrel 1'den, kompozit 100001'den başlar; z satırı başına +1000. `check_inp.py` inp'yi okuyup sabit ΔT altında bağımsız bir CGAX4 çözümü yapar. BENCH için sonuç 1D kontrolle birebir aynı (h/2'de 3606 µε hoop, 2554 µε eksenel).
+
+### CAE üzerinden (keyword'leri elle eklemek isterseniz)
+
 Çalışma sırası:
 
 1. `abaqus cae noGUI=build_model.py`: `calius1990_cylinders.cae` dosyasını ve `kw_BENCH_F6_TIE.txt`, `kw_F6_EXP.txt`, `kw_F1_EXP.txt`, `kw_F4_EXP.txt` dosyalarını üretir.
